@@ -5,9 +5,9 @@ public class Employes {
 	private	int identifiant;
 	private	String Nom;
 	private	String Prenom;
-	private Horraire Planning;	
+	private Horaire Planning;	
 	
-	public Employes(int Id,String nom,String prenom,Horraire planning) {
+	public Employes(int Id,String nom,String prenom,Horaire planning) {
 		this.identifiant = Id;
 		this.Nom=nom;
 		this.Prenom=prenom;
