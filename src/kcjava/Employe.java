@@ -1,13 +1,13 @@
 package kcjava;
 
-public class Employes {
+public class Employe {
 	
 	private	int identifiant;
 	private	String Nom;
 	private	String Prenom;
 	private Horaire Planning;	
 	
-	public Employes(int Id,String nom,String prenom,Horaire planning) {
+	public Employe(int Id,String nom,String prenom,Horaire planning) {
 		this.identifiant = Id;
 		this.Nom=nom;
 		this.Prenom=prenom;
