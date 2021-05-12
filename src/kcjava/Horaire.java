@@ -6,9 +6,22 @@ public class Horaire {
 	private LocalTime[] arrivees;
 	private LocalTime[] departs;
 	
+	public Horaire() {
+		this.arrivees = new LocalTime[5];
+		this.departs = new LocalTime[5];
+	}
+
 	public Horaire(LocalTime[] arrivees, LocalTime[] departs) {
 		this.arrivees = arrivees;
 		this.departs = departs;
+	}
+	
+	
+	public void setArriveeJour(int jour, LocalTime heure) {
+		this.arrivees[jour-1] = heure;
+	}
+	public void setDepartJour(int jour, LocalTime heure) {
+		this.departs[jour-1] = heure;
 	}
 	
 	public LocalTime[] getArrivees() {
