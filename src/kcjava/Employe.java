@@ -17,6 +17,7 @@ public class Employe {
 		this.planning = planning;
 		this.stockH = stockH;
 	}
+	
 		public int getIdentifiant() {
 			return identifiant;
 		}
