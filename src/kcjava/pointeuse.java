@@ -65,14 +65,6 @@ public class pointeuse {
 		this.identifiant = identifiant;
 	}
 
-	public ok getMaintenant() {
-		return maintenant;
-	}
-
-	public void setMaintenant(ok maintenant) {
-		this.maintenant = maintenant;
-	}
-	
 
 	
 }

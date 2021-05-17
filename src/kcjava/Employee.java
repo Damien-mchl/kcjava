@@ -1,16 +1,16 @@
 package kcjava;
 import java.time.*;
 
-public class Employe {
+public class Employee {
 	
 	private	int identifiant;
 	private	String nom;
 	private	String prenom;
-	private Horaire planning;
+	private Planning planning;
 	private LocalTime stockH;
 	
 
-	public Employe(int identifiant, String nom, String prenom, Horaire planning, LocalTime stockH) {
+	public Employee(int identifiant, String nom, String prenom, Planning planning, LocalTime stockH) {
 		this.identifiant = identifiant;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -48,12 +48,12 @@ public class Employe {
 		}
 
 
-		public Horaire getPlanning() {
+		public Planning getPlanning() {
 			return planning;
 		}
 
 
-		public void setPlanning(Horaire planning) {
+		public void setPlanning(Planning planning) {
 			this.planning = planning;
 		}
 
