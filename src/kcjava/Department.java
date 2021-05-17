@@ -11,8 +11,12 @@ public class Department {
 		this.employees = new ArrayList<Employee>();
 	}
 	
-	public void ajouterEmploye(Employee e) {
+	public void addEmployee(Employee e) {
 		this.employees.add(e);
+	}
+	
+	public void removeEmployee(Employee e) {
+		this.employees.remove(e);
 	}
 	
 	public String getNom() {
