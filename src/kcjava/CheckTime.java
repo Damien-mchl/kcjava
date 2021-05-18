@@ -1,31 +1,31 @@
 package kcjava;
 import java.time.*;
 
-public class pointeuse {
+public class CheckTime {
 	private LocalTime heurePointage;
 	private LocalDate datePointage;
 	private int identifiant;
 
-	public pointeuse(LocalTime heurePointage, LocalDate datePointage, int identifiant) {
+	public CheckTime(LocalTime heurePointage, LocalDate datePointage, int identifiant) {
 		
 		int i=heurePointage.getMinute();
-		//ça part à 0
+		//Ã§a part Ã  0
 		if(i<8) {
 			heurePointage =heurePointage.withMinute(0);
 		}
-		//ça part à 15
+		//Ã§a part Ã  15
 		else if(i<23) {
 			heurePointage =heurePointage.withMinute(15);
 		}
-		//ça part à 30
+		//Ã§a part Ã  30
 		else if(i<38) {
 			heurePointage =heurePointage.withMinute(30);
 		}
-		//ça part à 45
+		//Ã§a part Ã  45
 		else if(i<53) {
 			heurePointage =heurePointage.withMinute(45);
 		}
-		//ça part à 0(+1h)
+		//Ã§a part Ã  0(+1h)
 		else {
 			heurePointage =heurePointage.withMinute(0);
 			heurePointage =heurePointage.plusHours(1);
