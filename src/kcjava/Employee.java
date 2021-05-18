@@ -1,75 +1,121 @@
 package kcjava;
 import java.time.*;
+import static java.time.temporal.ChronoUnit.MINUTES;
 
-public class Employee {
+public class Employee{
 	
-	private	int identifiant;
-	private	String nom;
-	private	String prenom;
+	final int MONDAY = 0;
+	final int TUESDAY = 1;
+	final int WEDNESDAY = 2;
+	final int THURSDAY = 3;
+	final int FRIDAY = 4;
+	
+	private	int id;
+	private	String lastName;
+	private	String firstName;
 	private Planning planning;
-	private LocalTime stockH;
+	private long stockH; // Positif si il a fait des heures en trop
+	private boolean checked = false; // pas encore pointé
 	
-
-	public Employee(int identifiant, String nom, String prenom, Planning planning, LocalTime stockH) {
-		this.identifiant = identifiant;
-		this.nom = nom;
-		this.prenom = prenom;
+	public Employee(int id, String lastName, String firstName, Planning planning, long stockH) {
+		this.id = id;
+		this.lastName = lastName;
+		this.firstName = firstName;
 		this.planning = planning;
 		this.stockH = stockH;
 	}
+	public void planningCompare(CheckTime checkTime) {
+		if (this.checked){ // Depart
+			
+			
+			  
+			int isSup = checkTime.getHeurePointage().compareTo(this.planning.getDepartures(getActualDayInt()));
+			long between = checkTime.getHeurePointage().until(this.planning.getDepartures(getActualDayInt()), MINUTES);
+			
+			if(isSup > 0) { // Part en avance
+				this.stockH -= between;
+			}
+
+			else if(isSup < 0) { // Part en retard
+				this.stockH += between;
+			}
+			
+			this.checked = false;
+		}else { // Arrivée
+			
+			
+			  
+			int isSup = checkTime.getHeurePointage().compareTo(this.planning.getArrivals(getActualDayInt()));
+			long between = checkTime.getHeurePointage().until(this.planning.getArrivals(getActualDayInt()), MINUTES);
+			
+			if(isSup > 0) { // Arrive en avance
+				this.stockH += between;
+			}
+
+			else if(isSup < 0) { // Arrive en retard
+				this.stockH -= between;
+			}
+			
+			this.checked = true;
+		}
+	}
 	
-		public int getIdentifiant() {
-			return identifiant;
-		}
+	public int getIdentifiant() {
+		return id;
+	}
 
 
-		public void setIdentifiant(int identifiant) {
-			this.identifiant = identifiant;
-		}
+	public void setIdentifiant(int id) {
+		this.id = id;
+	}
 
 
-		public String getNom() {
-			return nom;
-		}
+	public String getNom() {
+		return lastName;
+	}
 
 
-		public void setNom(String nom) {
-			this.nom = nom;
-		}
+	public void setNom(String lastName) {
+		this.lastName = lastName;
+	}
 
 
-		public String getPrenom() {
-			return prenom;
-		}
+	public String getPrenom() {
+		return firstName;
+	}
 
 
-		public void setPrenom(String prenom) {
-			this.prenom = prenom;
-		}
+	public void setPrenom(String firstName) {
+		this.firstName = firstName;
+	}
 
 
-		public Planning getPlanning() {
-			return planning;
-		}
+	public Planning getPlanning() {
+		return planning;
+	}
 
 
-		public void setPlanning(Planning planning) {
-			this.planning = planning;
-		}
+	public void setPlanning(Planning planning) {
+		this.planning = planning;
+	}
 
 
-		public LocalTime getStockH() {
-			return stockH;
-		}
+	public long getStockH() {
+		return stockH;
+	}
 
 
-		public void setStockH(LocalTime stockH) {
-			this.stockH = stockH;
-		}
-
+	public void setStockH(long stockH) {
+		this.stockH = stockH;
+	}
 	
-	
-	
+	// Return le jour de la semaine de 0 à 6
+	public int getActualDayInt() {
+		LocalDate date = LocalDate.now();
+		DayOfWeek day;
+		day = date.getDayOfWeek();
+		return day.getValue() - 1; 
+	}
 }
 
 
