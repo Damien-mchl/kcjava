@@ -24,18 +24,25 @@ public class Planning {
 		this.departures[jour-1] = heure;
 	}
 	
-	public LocalTime[] getarrivals() {
+	public LocalTime[] getArrivals() {
 		return arrivals;
 	}
-	public void setarrivals(LocalTime[] arrivals) {
+	public void setArrivals(LocalTime[] arrivals) {
 		this.arrivals = arrivals;
 	}
-	public LocalTime[] getdepartures() {
+	
+	public LocalTime[] getDepartures() {
 		return departures;
 	}
-	public void setdepartures(LocalTime[] departures) {
+	public void setDepartures(LocalTime[] departures) {
 		this.departures = departures;
 	}
 	
+	public LocalTime getArrivalsByDay(int day) {
+		return this.arrivals[day];
+	}
 	
+	public LocalTime getDeparturesByDay(int day) {
+		return this.departures[day];
+	}
 }

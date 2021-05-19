@@ -29,8 +29,8 @@ public class Employee{
 			
 			
 			  
-			int isSup = checkTime.getHeurePointage().compareTo(this.planning.getDepartures(getActualDayInt()));
-			long between = checkTime.getHeurePointage().until(this.planning.getDepartures(getActualDayInt()), MINUTES);
+			int isSup = checkTime.getHeurePointage().compareTo(this.planning.getDeparturesByDay(getActualDayInt()));
+			long between = checkTime.getHeurePointage().until(this.planning.getDeparturesByDay(getActualDayInt()), MINUTES);
 			
 			if(isSup > 0) { // Part en avance
 				this.stockH -= between;
@@ -45,8 +45,8 @@ public class Employee{
 			
 			
 			  
-			int isSup = checkTime.getHeurePointage().compareTo(this.planning.getArrivals(getActualDayInt()));
-			long between = checkTime.getHeurePointage().until(this.planning.getArrivals(getActualDayInt()), MINUTES);
+			int isSup = checkTime.getHeurePointage().compareTo(this.planning.getArrivalsByDay(getActualDayInt()));
+			long between = checkTime.getHeurePointage().until(this.planning.getArrivalsByDay(getActualDayInt()), MINUTES);
 			
 			if(isSup > 0) { // Arrive en avance
 				this.stockH += between;
