@@ -1,7 +1,8 @@
 package kcjava;
+import java.io.Serializable;
 import java.time.*;
 
-public class CheckTime {
+public class CheckTime implements Serializable{
 	private LocalTime heurePointage;
 	private LocalDate datePointage;
 	private int identifiant;
@@ -40,6 +41,12 @@ public class CheckTime {
 	}
 	
 	
+
+	public CheckTime(int id) {
+		this.identifiant = id;
+	}
+
+
 
 	public LocalTime getHeurePointage() {
 		return heurePointage;
