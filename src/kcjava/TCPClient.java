@@ -3,30 +3,32 @@ package kcjava;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Scanner;
 
-public class TCPClient implements Runnable {
-	static Socket socket;
-	static ObjectInputStream ois = null;
-	static ObjectOutputStream oos = null;
-	static Scanner console = null;
-	static Boolean val = false;
+public class TCPClient {
+
  
-	public void run() {
-		try {
+	public static void main(String[] args) throws Exception{
+		new TCPClient();
+	}
+	public TCPClient() throws Exception{
+
 			System.out.println("Demande de connexion");
-			socket = new Socket("127.0.0.1", 8085);
-			System.out.println("Connexion établie avec le serveur");
-			console = new Scanner(System.in);
-			ois = new ObjectInputStream(socket.getInputStream());
-			oos = new ObjectOutputStream(socket.getOutputStream());
+			Socket socket = new Socket("127.0.0.1", TCPServer.PORT);
+			System.out.println("Connexion Ã©tablie avec le serveur");
+
+			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+			
 
 			CheckTime check = new CheckTime(42);
 			oos.writeObject(check);
 
+			CheckTime rep = (CheckTime)ois.readObject();
+			
+			System.out.println(rep.getIdentifiant());
+			
+			oos.close();
 			socket.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
 	}
 }
