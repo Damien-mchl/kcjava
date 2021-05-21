@@ -9,23 +9,22 @@ import controller.*;
 import model.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.GroupLayout.Alignment;
 
 public class View {
 	private JFrame frame;
 	private JPanel ctrlPane;
-	private JLabel labelDate;
 	private JSplitPane splitPane;
 	private JFormattedTextField textUserId;
 	private JButton butCheckinout;
+	private JPanel timePanel;
+	private JLabel labelDate;
+	private JLabel roundedTime;
 	public View(String title) {
-        // Create views swing UI components
-		this.labelDate = new JLabel();
-		labelDate.setHorizontalAlignment(SwingConstants.CENTER);
  
         // Set the view layout
         this.ctrlPane = new JPanel();
-        ctrlPane.setLayout(new BorderLayout(0, 0));
-        ctrlPane.add(labelDate, BorderLayout.CENTER);
+        ctrlPane.setLayout(new BorderLayout(10, 10));
         
 
  
@@ -43,6 +42,20 @@ public class View {
         this.butCheckinout = new JButton("Check in/out");
         splitPane.setRightComponent(butCheckinout);
         butCheckinout.setBackground(Color.GRAY);
+        
+        this.timePanel = new JPanel();
+        ctrlPane.add(timePanel, BorderLayout.CENTER);
+        
+        this.labelDate = new JLabel();
+        labelDate.setHorizontalAlignment(SwingConstants.CENTER);
+        labelDate.setFont(new Font("Arial",Font.BOLD,20));
+        
+        this.roundedTime = new JLabel("");
+        timePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 30));
+        timePanel.add(labelDate);
+        timePanel.add(roundedTime);
+		// Create views swing UI components
+		
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -83,6 +96,18 @@ public class View {
 	}
 	public void setButCheckinout(JButton butCheckinout) {
 		this.butCheckinout = butCheckinout;
+	}
+	public JPanel getTimePanel() {
+		return timePanel;
+	}
+	public void setTimePanel(JPanel timePanel) {
+		this.timePanel = timePanel;
+	}
+	public JLabel getRoundedTime() {
+		return roundedTime;
+	}
+	public void setRoundedTime(JLabel roundedTime) {
+		this.roundedTime = roundedTime;
 	}
 	
 	
