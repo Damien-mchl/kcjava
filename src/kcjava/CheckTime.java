@@ -14,36 +14,45 @@ public class CheckTime implements Serializable{
 	 * @param	int identifiant identifiant de l'employ�
 	 * */
 	public CheckTime(LocalTime heurePointage, LocalDate datePointage, int identifiant) {
-		
-		int i=heurePointage.getMinute();
+		this.heurePointage = roundTime(heurePointage);
+		this.datePointage = datePointage;
+		this.identifiant = identifiant;
+	}
+	
+
+	/*
+	 * @brief arrondi l'heure au quart d'heure le plus pr�s
+	 * 
+	 * @param LocalTime time
+	 * 
+	 * */
+	public LocalTime roundTime(LocalTime time) {
+		int i=time.getMinute();
 		//ça part à 0
 		if(i<8) {
-			heurePointage =heurePointage.withMinute(0);
+			time =time.withMinute(0);
 		}
 		//ça part à 15
 		else if(i<23) {
-			heurePointage =heurePointage.withMinute(15);
+			time =time.withMinute(15);
 		}
 		//ça part à 30
 		else if(i<38) {
-			heurePointage =heurePointage.withMinute(30);
+			time =time.withMinute(30);
 		}
 		//ça part à 45
 		else if(i<53) {
-			heurePointage =heurePointage.withMinute(45);
+			time =time.withMinute(45);
 		}
 		//ça part à 0(+1h)
 		else {
-			heurePointage =heurePointage.withMinute(0);
-			heurePointage =heurePointage.plusHours(1);
+			time =time.withMinute(0);
+			time =time.plusHours(1);
 		}
 		
-		this.heurePointage = heurePointage;
 		
+		return time;
 		
-		
-		this.datePointage = datePointage;
-		this.identifiant = identifiant;
 	}
 	
 	
@@ -54,16 +63,20 @@ public class CheckTime implements Serializable{
 	 * 
 	 * */
 	public CheckTime(int id) {
+		
 		this.identifiant = id;
 	}
 
 
-	/*
-	 * @brief Getter de heurePointage
+	
+	
 
-	 * @return LocalTime heurePointage
-	 * 
-	 * */
+	/*
+ 	* @brief Getter de heurePointage
+
+ 	* @return LocalTime heurePointage
+ 	* 
+ 	* */
 	public LocalTime getHeurePointage() {
 		return heurePointage;
 	}
