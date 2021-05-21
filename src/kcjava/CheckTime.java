@@ -26,7 +26,7 @@ public class CheckTime implements Serializable{
 	 * @param LocalTime time
 	 * 
 	 * */
-	public LocalTime roundTime(LocalTime time) {
+	public static LocalTime roundTime(LocalTime time) {
 		int i=time.getMinute();
 		//ça part à 0
 		if(i<8) {
