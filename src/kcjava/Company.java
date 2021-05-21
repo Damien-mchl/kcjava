@@ -64,76 +64,76 @@ public class Company {
 	}
 	
 
-private class TCPServer{
-	public static final int PORT = 3191;
-	public Company comp = null;
-	
-	public TCPServer(Company comp) throws Exception{
-			ServerSocket serverSocket = null;
-			this.comp = comp;
-			// Nombre de connections
-			int clientNumber = 0;
-			
-			// Essaye d'ouvrir le serveur socket sur le port PORT
-			try {
-				serverSocket = new ServerSocket(PORT);
-				System.out.println("Le serveur est à l'écoute du port "+ PORT);
-			}catch(IOException e) {
-				System.out.println(e);
-			}
-			try {
-				while(true) {
-					Socket socket = serverSocket.accept();
-					System.out.println("Connexion client acceptée.");
-					new ServiceThread(socket, clientNumber++).start();
+	private class TCPServer{
+		public static final int PORT = 3191;
+		public Company comp = null;
+
+		public TCPServer(Company comp) throws Exception{
+				ServerSocket serverSocket = null;
+				this.comp = comp;
+				// Nombre de connections
+				int clientNumber = 0;
+
+				// Essaye d'ouvrir le serveur socket sur le port PORT
+				try {
+					serverSocket = new ServerSocket(PORT);
+					System.out.println("Le serveur est Ã  l'Ã©coute du port "+ PORT);
+				}catch(IOException e) {
+					System.out.println(e);
 				}
-			}finally {
-				serverSocket.close();
-			}
-	}
-	private class ServiceThread extends Thread{
-		private int clientNumber;
-		private Socket socket;
-		
-		public ServiceThread(Socket socket, int clientNumber) {
-			this.clientNumber = clientNumber;
-			this.socket = socket;
-			
-			System.out.println("Nouvelle connection avec client numero " + this.clientNumber + " a " + socket);
-		}
-		@Override
-		public void run() {
-			try {
-				ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-				ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
-				
-				while(true) {
-					// On recup le checkTime envoye par la pointeuse
-					CheckTime check = (CheckTime)inputStream.readObject();
-					System.out.println("Donnees recup sur employe nb : "+check.getIdentifiant());
-					
-					// COmparaison
-					System.out.println("Comparaison planning de : "+check.getIdentifiant());
-					// Parcour des employee
-					for (Employee emp : comp.getDepartements().get(0).getEmployees()) 
-					{ 
-					   if(emp.getIdentifiant() == check.getIdentifiant()) {
-						   emp.planningCompare(check);
-					   }
+				try {
+					while(true) {
+						Socket socket = serverSocket.accept();
+						System.out.println("Connexion client acceptÃ©e.");
+						new ServiceThread(socket, clientNumber++).start();
 					}
-					
-					// On repond a la poiteuse
-					String rep = new String("Bien recu");
-					outputStream.writeObject(rep);
+				}finally {
+					serverSocket.close();
 				}
-				
-			}catch(IOException e) {
-				System.out.println(e);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		}
+		private class ServiceThread extends Thread{
+			private int clientNumber;
+			private Socket socket;
+
+			public ServiceThread(Socket socket, int clientNumber) {
+				this.clientNumber = clientNumber;
+				this.socket = socket;
+
+				System.out.println("Nouvelle connection avec client numero " + this.clientNumber + " a " + socket);
+			}
+			@Override
+			public void run() {
+				try {
+					ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+					ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+
+					while(true) {
+						// On recup le checkTime envoye par la pointeuse
+						CheckTime check = (CheckTime)inputStream.readObject();
+						System.out.println("Donnees recup sur employe nb : "+check.getIdentifiant());
+
+						// COmparaison
+						System.out.println("Comparaison planning de : "+check.getIdentifiant());
+						// Parcour des employee
+						for (Employee emp : comp.getDepartements().get(0).getEmployees()) 
+						{ 
+						   if(emp.getIdentifiant() == check.getIdentifiant()) {
+							   emp.planningCompare(check);
+						   }
+						}
+
+						// On repond a la poiteuse
+						String rep = new String("Bien recu");
+						outputStream.writeObject(rep);
+					}
+
+				}catch(IOException e) {
+					System.out.println(e);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
-}
 }
