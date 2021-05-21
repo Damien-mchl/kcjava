@@ -11,36 +11,79 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class View {
-	public View() {
+	private JFrame frame;
+	private JPanel ctrlPane;
+	private JLabel labelDate;
+	private JSplitPane splitPane;
+	private JFormattedTextField textUserId;
+	private JButton butCheckinout;
+	public View(String title) {
         // Create views swing UI components
-		JLabel date = new JLabel("Date et heure");
-		date.setHorizontalAlignment(SwingConstants.CENTER);
+		this.labelDate = new JLabel();
+		labelDate.setHorizontalAlignment(SwingConstants.CENTER);
  
         // Set the view layout
-        JPanel ctrlPane = new JPanel();
+        this.ctrlPane = new JPanel();
         ctrlPane.setLayout(new BorderLayout(0, 0));
-        ctrlPane.add(date, BorderLayout.CENTER);
+        ctrlPane.add(labelDate, BorderLayout.CENTER);
         
 
  
-        JFrame frame = new JFrame("Time tracker emulator - V1.4");
+        this.frame = new JFrame(title);
         frame.setPreferredSize(new Dimension(400, 250));
         frame.getContentPane().add(ctrlPane);
         
-        JSplitPane splitPane = new JSplitPane();
+        this.splitPane = new JSplitPane();
         ctrlPane.add(splitPane, BorderLayout.SOUTH);
-        JFormattedTextField userId = new JFormattedTextField();
-        userId.setToolTipText("User Id");
-        splitPane.setLeftComponent(userId);
-        userId.setColumns(20);
-        userId.setHorizontalAlignment(SwingConstants.CENTER);
-        JButton checkinout = new JButton("Check in/out");
-        splitPane.setRightComponent(checkinout);
-        checkinout.setBackground(Color.GRAY);
-        checkinout.addActionListener(new Controller());
+        this.textUserId = new JFormattedTextField();
+        textUserId.setToolTipText("User Id");
+        splitPane.setLeftComponent(textUserId);
+        textUserId.setColumns(20);
+        textUserId.setHorizontalAlignment(SwingConstants.CENTER);
+        this.butCheckinout = new JButton("Check in/out");
+        splitPane.setRightComponent(butCheckinout);
+        butCheckinout.setBackground(Color.GRAY);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
+	public JFrame getFrame() {
+		return frame;
+	}
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+	public JPanel getCtrlPane() {
+		return ctrlPane;
+	}
+	public void setCtrlPane(JPanel ctrlPane) {
+		this.ctrlPane = ctrlPane;
+	}
+	public JLabel getLabelDate() {
+		return labelDate;
+	}
+	public void setLabelDate(JLabel labelDate) {
+		this.labelDate = labelDate;
+	}
+	public JSplitPane getSplitPane() {
+		return splitPane;
+	}
+	public void setSplitPane(JSplitPane splitPane) {
+		this.splitPane = splitPane;
+	}
+	public JFormattedTextField getTextUserId() {
+		return textUserId;
+	}
+	public void setTextUserId(JFormattedTextField textUserId) {
+		this.textUserId = textUserId;
+	}
+	public JButton getButCheckinout() {
+		return butCheckinout;
+	}
+	public void setButCheckinout(JButton butCheckinout) {
+		this.butCheckinout = butCheckinout;
+	}
+	
+	
 }

@@ -8,34 +8,7 @@ public class CheckTime implements Serializable{
 	private int identifiant;
 
 	public CheckTime(LocalTime heurePointage, LocalDate datePointage, int identifiant) {
-		
-		int i=heurePointage.getMinute();
-		//ça part à 0
-		if(i<8) {
-			heurePointage =heurePointage.withMinute(0);
-		}
-		//ça part à 15
-		else if(i<23) {
-			heurePointage =heurePointage.withMinute(15);
-		}
-		//ça part à 30
-		else if(i<38) {
-			heurePointage =heurePointage.withMinute(30);
-		}
-		//ça part à 45
-		else if(i<53) {
-			heurePointage =heurePointage.withMinute(45);
-		}
-		//ça part à 0(+1h)
-		else {
-			heurePointage =heurePointage.withMinute(0);
-			heurePointage =heurePointage.plusHours(1);
-		}
-		
-		this.heurePointage = heurePointage;
-		
-		
-		
+		this.heurePointage = roundTime(heurePointage);
 		this.datePointage = datePointage;
 		this.identifiant = identifiant;
 	}
@@ -46,7 +19,31 @@ public class CheckTime implements Serializable{
 		this.identifiant = id;
 	}
 
-
+	public static LocalTime roundTime(LocalTime time) {
+		int i=time.getMinute();
+		//ça part à 0
+		if(i<8) {
+			time =time.withMinute(0);
+		}
+		//ça part à 15
+		else if(i<23) {
+			time =time.withMinute(15);
+		}
+		//ça part à 30
+		else if(i<38) {
+			time =time.withMinute(30);
+		}
+		//ça part à 45
+		else if(i<53) {
+			time =time.withMinute(45);
+		}
+		//ça part à 0(+1h)
+		else {
+			time =time.withMinute(0);
+			time =time.plusHours(1);
+		}
+		return time;
+	}
 
 	public LocalTime getHeurePointage() {
 		return heurePointage;
