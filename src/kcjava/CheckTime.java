@@ -6,7 +6,13 @@ public class CheckTime implements Serializable{
 	private LocalTime heurePointage;
 	private LocalDate datePointage;
 	private int identifiant;
-
+	/*
+	 * @brief  Constructeur de la classe CheckTime
+	 * 
+	 * @param	LocalTime heurePointage 
+	 * @param	LocalDate datePointage
+	 * @param	int identifiant identifiant de l'employé
+	 * */
 	public CheckTime(LocalTime heurePointage, LocalDate datePointage, int identifiant) {
 		
 		int i=heurePointage.getMinute();
@@ -41,33 +47,71 @@ public class CheckTime implements Serializable{
 	}
 	
 	
-
+	/*
+	 * @brief Constructeur de la classe CheckTime
+	 * 
+	 * @param int id identifiant employé
+	 * 
+	 * */
 	public CheckTime(int id) {
 		this.identifiant = id;
 	}
 
 
+	/*
+	 * @brief Getter de heurePointage
 
+	 * @return LocalTime heurePointage
+	 * 
+	 * */
 	public LocalTime getHeurePointage() {
 		return heurePointage;
 	}
 
+	/*
+	 * @brief setter de heurePointage
+
+	 * @param LocalTime heurePointage
+	 * 
+	 * */
 	public void setHeurePointage(LocalTime heurePointage) {
 		this.heurePointage = heurePointage;
 	}
+	/*
+	 * @brief Getter de datePointage
 
+	 * @return LocalDate datePointage
+	 * 
+	 * */
 	public LocalDate getDatePointage() {
 		return datePointage;
 	}
+	/*
+	 * @brief Setter de datePointage
 
+	 * @param LocalDate datePointage
+	 * 
+	 * */
 	public void setDatePointage(LocalDate datePointage) {
 		this.datePointage = datePointage;
 	}
 
+	/*
+	 * @brief Getter de identifiant
+
+	 * @return int identifiant
+	 * 
+	 * */
 	public int getIdentifiant() {
 		return identifiant;
 	}
+	
+	/*
+	 * @brief Setter de identifiant
 
+	 * @param int identifiant
+	 * 
+	 * */
 	public void setIdentifiant(int identifiant) {
 		this.identifiant = identifiant;
 	}
