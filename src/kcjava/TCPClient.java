@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class TCPClient {
 	public final String ServerIP = "127.0.0.1";
@@ -14,7 +16,24 @@ public class TCPClient {
 	private ObjectInputStream inputStream = null;
 	
 	public static void main(String[] args) throws Exception{
-		new TCPClient(new CheckTime(42));
+		//Check-IN
+				CheckTime checkTest = new CheckTime(LocalTime.now(), LocalDate.now(), 4);
+				CheckTime checkTest2 = new CheckTime(LocalTime.now(), LocalDate.now(), 7);
+				CheckTime checkTest3 = new CheckTime(LocalTime.now(), LocalDate.now(), 5);
+				CheckTime checkTest4 = new CheckTime(LocalTime.now(), LocalDate.now(), 1);
+				CheckTime checkTest5 = new CheckTime(LocalTime.now(), LocalDate.now(), 2);
+				
+				
+				System.out.println("L'employee 4, 7, 5, 1, 2 ont check-IN");
+				
+			
+				new TCPClient(checkTest);
+				new TCPClient(checkTest2);
+				new TCPClient(checkTest3);
+				new TCPClient(checkTest4);
+				new TCPClient(checkTest5);
+				
+				System.out.println("Check-IN envoye");
 	}
 	public TCPClient(CheckTime check) throws Exception{
 
@@ -24,8 +43,8 @@ public class TCPClient {
 			
 		try {
 			// Tentative de connection au serveur
-			socketOfClient = new Socket(ServerIP,TCPServer.PORT);
-			System.out.println("Connexion etablie avec le serveur "+ServerIP+" sur le port "+TCPServer.PORT);
+			socketOfClient = new Socket(ServerIP,3191);
+			System.out.println("Connexion etablie avec le serveur "+ServerIP+" sur le port "+3191);
 				
 			this.outputStream = new ObjectOutputStream(socketOfClient.getOutputStream());
 			this.inputStream = new ObjectInputStream(socketOfClient.getInputStream());

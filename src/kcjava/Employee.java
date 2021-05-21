@@ -15,17 +15,8 @@ public class Employee{
 	private	String firstName;
 	private Planning planning;
 	private long stockH; // Positif si il a fait des heures en trop
-	private boolean checked = false; // pas encore pointÃ©
-	/*
-	 * @brief Constructeur de la classe Employee
-
-	 * @param int id identifiant de l'employé
-	 * @param String lastName Nom de famille
-	 * @param String firstName prénom
-	 * @param Planning planning son emploi du temps
-	 * @param long stockH son "stock" d'heure 
-	 * 
-	 * */
+	private boolean checked = false; // pas encore pointé
+	
 	public Employee(int id, String lastName, String firstName, Planning planning, long stockH) {
 		this.id = id;
 		this.lastName = lastName;
@@ -33,20 +24,14 @@ public class Employee{
 		this.planning = planning;
 		this.stockH = stockH;
 	}
-	/*
-	 * @brief Compare l'heure de pointage par rapport à l'heure prévue dans le planning
-	 * 		  et ajoute l'excédant à la valeur stockH
-	 * 
-	 * @param CheckTime checkTime l'heure du pointage
-	 * 
-	 * */
 	public void planningCompare(CheckTime checkTime) {
+		System.out.println("Comparaison du planning de "+this.firstName+" "+this.lastName);
 		if (this.checked){ // Depart
 			
 			
 			  
-			int isSup = checkTime.getHeurePointage().compareTo(this.planning.getDeparturesByDay(getActualDayInt()));
-			long between = checkTime.getHeurePointage().until(this.planning.getDeparturesByDay(getActualDayInt()), MINUTES);
+			int isSup = checkTime.getHeurePointage().compareTo(this.planning.getDepartures(getActualDayInt()));
+			long between = checkTime.getHeurePointage().until(this.planning.getDepartures(getActualDayInt()), MINUTES);
 			
 			if(isSup > 0) { // Part en avance
 				this.stockH -= between;
@@ -57,12 +42,12 @@ public class Employee{
 			}
 			
 			this.checked = false;
-		}else { // ArrivÃ©e
+		}else { // Arrivée
 			
 			
 			  
-			int isSup = checkTime.getHeurePointage().compareTo(this.planning.getArrivalsByDay(getActualDayInt()));
-			long between = checkTime.getHeurePointage().until(this.planning.getArrivalsByDay(getActualDayInt()), MINUTES);
+			int isSup = checkTime.getHeurePointage().compareTo(this.planning.getArrivals(getActualDayInt()));
+			long between = checkTime.getHeurePointage().until(this.planning.getArrivals(getActualDayInt()), MINUTES);
 			
 			if(isSup > 0) { // Arrive en avance
 				this.stockH += between;
@@ -74,113 +59,59 @@ public class Employee{
 			
 			this.checked = true;
 		}
+		System.out.println("Nouveau stockH = "+this.stockH);
 	}
-	/*
-	 * @brief Getter de id
-	 * 
-	 * @return int id
-	 * 
-	 * */
+	
 	public int getIdentifiant() {
 		return id;
 	}
 
-	/*
-	 * @brief Setter de id
-	 * 
-	 * @param int id
-	 * 
-	 * */
+
 	public void setIdentifiant(int id) {
 		this.id = id;
 	}
 
-	/*
-	 * @brief Getter de lastName
-	 * 
-	 * @return String lastName
-	 * 
-	 * */
-	public String getLastName() {
+
+	public String getNom() {
 		return lastName;
 	}
 
-	/*
-	 * @brief Setter de lastName
-	 * 
-	 * @param String lastName
-	 * 
-	 * */
-	public void setLastName(String lastName) {
+
+	public void setNom(String lastName) {
 		this.lastName = lastName;
 	}
 
-	/*
-	 * @brief Getter de firstName
-	 * 
-	 * @return String firstName
-	 * 
-	 * */
-	public String getFirstName() {
+
+	public String getPrenom() {
 		return firstName;
 	}
 
-	/*
-	 * @brief Setter de firstName
-	 * 
-	 * @param String firstName
-	 * 
-	 * */
-	public void setFirstName(String firstName) {
+
+	public void setPrenom(String firstName) {
 		this.firstName = firstName;
 	}
 
-	/*
-	 * @brief Getter de Planning
-	 * 
-	 * @return Planning planning
-	 * 
-	 * */
+
 	public Planning getPlanning() {
 		return planning;
 	}
 
-	/*
-	 * @brief Setter de Planning
-	 * 
-	 * @param Planning planning
-	 * 
-	 * */
+
 	public void setPlanning(Planning planning) {
 		this.planning = planning;
 	}
 
-	/*
-	 * @brief Getter de stockH
-	 * 
-	 * @return long stockH
-	 * 
-	 * */
+
 	public long getStockH() {
 		return stockH;
 	}
 
-	/*
-	 * @brief Setter de stockH
-	 * 
-	 * @param long stockH
-	 * 
-	 * */
+
 	public void setStockH(long stockH) {
 		this.stockH = stockH;
 	}
 	
-	/*
-	 * @brief Getter du jour actuel (de 0 à 6)
-	 * 
-	 * @return LocalDate date
-	 * 
-	 * */
+	// Return le jour de la semaine de 0 à 6
 	public int getActualDayInt() {
 		LocalDate date = LocalDate.now();
 		DayOfWeek day;
@@ -188,5 +119,3 @@ public class Employee{
 		return day.getValue() - 1; 
 	}
 }
-
-
