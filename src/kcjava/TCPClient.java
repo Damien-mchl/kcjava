@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class TCPClient {
-	public final String ServerIP = "127.0.0.1";
- 
+	public final String ServerIP = "86.236.227.45";
+	
 	private CheckTime check = null;
 	
 	private ObjectOutputStream outputStream = null;
@@ -43,8 +43,8 @@ public class TCPClient {
 			
 		try {
 			// Tentative de connection au serveur
-			socketOfClient = new Socket(ServerIP,3191);
-			System.out.println("Connexion etablie avec le serveur "+ServerIP+" sur le port "+3191);
+			socketOfClient = new Socket(ServerIP,8081);
+			System.out.println("Connexion etablie avec le serveur "+ServerIP+" sur le port "+8081);
 				
 			this.outputStream = new ObjectOutputStream(socketOfClient.getOutputStream());
 			this.inputStream = new ObjectInputStream(socketOfClient.getInputStream());
