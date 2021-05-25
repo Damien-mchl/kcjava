@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class TCPClient {
-	public final String ServerIP = "86.236.227.45";
-	
+	public final String ServerIP;
+ 	public final int portClient;
 	private CheckTime check = null;
 	
 	private ObjectOutputStream outputStream = null;
@@ -27,24 +27,26 @@ public class TCPClient {
 				System.out.println("L'employee 4, 7, 5, 1, 2 ont check-IN");
 				
 			
-				new TCPClient(checkTest);
-				new TCPClient(checkTest2);
-				new TCPClient(checkTest3);
-				new TCPClient(checkTest4);
-				new TCPClient(checkTest5);
+				new TCPClient(checkTest, "localhost", 8081);
+				new TCPClient(checkTest2, "localhost", 8081);
+				new TCPClient(checkTest3, "localhost", 8081);
+				new TCPClient(checkTest4, "localhost", 8081);
+				new TCPClient(checkTest5, "localhost", 8081);
 				
 				System.out.println("Check-IN envoye");
 	}
-	public TCPClient(CheckTime check) throws Exception{
+	public TCPClient(CheckTime check, String ip, int port) throws Exception{
 
 		this.check = check;
+		this.ServerIP = ip;
+		this.portClient = port;
 		
 		Socket socketOfClient = null;
 			
 		try {
 			// Tentative de connection au serveur
-			socketOfClient = new Socket(ServerIP,8081);
-			System.out.println("Connexion etablie avec le serveur "+ServerIP+" sur le port "+8081);
+			socketOfClient = new Socket(ServerIP,portClient);
+			System.out.println("Connexion etablie avec le serveur "+ServerIP+" sur le port "+portClient);
 				
 			this.outputStream = new ObjectOutputStream(socketOfClient.getOutputStream());
 			this.inputStream = new ObjectInputStream(socketOfClient.getInputStream());
