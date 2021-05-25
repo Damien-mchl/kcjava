@@ -27,11 +27,11 @@ public class TCPClient {
 				System.out.println("L'employee 4, 7, 5, 1, 2 ont check-IN");
 				
 			
-				new TCPClient(checkTest);
-				new TCPClient(checkTest2);
-				new TCPClient(checkTest3);
-				new TCPClient(checkTest4);
-				new TCPClient(checkTest5);
+				new TCPClient(checkTest, "localhost", 8081);
+				new TCPClient(checkTest2, "localhost", 8081);
+				new TCPClient(checkTest3, "localhost", 8081);
+				new TCPClient(checkTest4, "localhost", 8081);
+				new TCPClient(checkTest5, "localhost", 8081);
 				
 				System.out.println("Check-IN envoye");
 	}
