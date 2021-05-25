@@ -55,7 +55,7 @@ public class TCPServer{
 				while(true) {
 					// On recup le checkTime envoye par la pointeuse
 					CheckTime check = (CheckTime)inputStream.readObject();
-					System.out.println("Donnees recup sur employe nb : "+check.getIdentifiant());
+					System.out.println("Donnees recup sur employe nb : "+check.getId());
 					
 					
 					// On repond a la poiteuse
