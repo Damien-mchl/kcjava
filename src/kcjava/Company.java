@@ -110,14 +110,14 @@ public class Company {
 					while(true) {
 						// On recup le checkTime envoye par la pointeuse
 						CheckTime check = (CheckTime)inputStream.readObject();
-						System.out.println("Donnees recup sur employe nb : "+check.getIdentifiant());
+						System.out.println("Donnees recup sur employe nb : "+check.getId());
 
 						// COmparaison
-						System.out.println("Comparaison planning de : "+check.getIdentifiant());
+						System.out.println("Comparaison planning de : "+check.getId());
 						// Parcour des employee
 						for (Employee emp : comp.getDepartements().get(0).getEmployees()) 
 						{ 
-						   if(emp.getIdentifiant() == check.getIdentifiant()) {
+						   if(emp.getId() == check.getId()) {
 							   emp.planningCompare(check);
 						   }
 						}

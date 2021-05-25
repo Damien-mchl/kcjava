@@ -115,7 +115,7 @@ public class CheckTime implements Serializable{
 	 * @return int identifiant
 	 * 
 	 * */
-	public int getIdentifiant() {
+	public int getId() {
 		return identifiant;
 	}
 	
