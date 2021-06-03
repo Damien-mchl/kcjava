@@ -6,13 +6,17 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import controller.Controller;
+import controller.ServerController;
+import model.Model;
+import model.ServerModel;
+import view.ServerView;
+import view.View;
+
 
 public class TCPServer{
 	public static final int PORT = 3191;
 
-	public static void main(String[] args) throws Exception{
-		new TCPServer();
-	}
 	public TCPServer() throws Exception{
 			ServerSocket serverSocket = null;
 			
@@ -27,6 +31,10 @@ public class TCPServer{
 				System.out.println(e);
 			}
 			try {
+				ServerView view = new ServerView("Time tracker emulator - V1.4 - Server");
+				ServerModel model = new ServerModel();
+				ServerController controller = new ServerController(model,view);
+				controller.initController();
 				while(true) {
 					Socket socket = serverSocket.accept();
 					System.out.println("Connexion client acceptée.");

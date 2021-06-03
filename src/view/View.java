@@ -3,13 +3,6 @@ package view;
 import java.awt.*;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
-
-import controller.*;
-import model.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.GroupLayout.Alignment;
 
 public class View {
 	private JFrame frame;
