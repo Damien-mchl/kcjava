@@ -129,6 +129,13 @@ public class CheckTime implements Serializable{
 		this.identifiant = identifiant;
 	}
 
+	public String hourToString() {
+		return this.heurePointage.toString();
+	}
+	
+	public String dateToString() {
+		return this.datePointage.toString();
+	}
 
 	
 }

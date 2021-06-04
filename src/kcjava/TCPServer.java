@@ -17,6 +17,7 @@ import view.View;
 public class TCPServer{
 	public static final int PORT = 3191;
 	private Company company;
+	public static ServerController controller;
 	public TCPServer(Company company) throws Exception{
 			this.company = company;
 			ServerSocket serverSocket = null;
@@ -34,7 +35,7 @@ public class TCPServer{
 			try {
 				ServerView view = new ServerView("Time tracker emulator - V1.4 - Server");
 				ServerModel model = new ServerModel(this.company);
-				ServerController controller = new ServerController(model,view);
+				controller = new ServerController(model,view);
 				controller.initController();
 				while(true) {
 					Socket socket = serverSocket.accept();
@@ -45,6 +46,10 @@ public class TCPServer{
 				serverSocket.close();
 			}
 	}
+	public static void refreshTable() {
+		controller.refreshCheckTables();
+	}
+	
 	private class ServiceThread extends Thread{
 		private int clientNumber;
 		private Socket socket;
@@ -66,7 +71,8 @@ public class TCPServer{
 					CheckTime check = (CheckTime)inputStream.readObject();
 					System.out.println("Donnees recup sur employe nb : "+check.getId());
 					company.addCheck(check);
-					
+					// On refresh l'affichage
+					TCPServer.refreshTable();
 					// On repond a la poiteuse
 					String rep = new String("Bien recu");
 					outputStream.writeObject(rep);

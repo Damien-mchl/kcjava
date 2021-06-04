@@ -92,6 +92,14 @@ public class Company {
 		}
 	}
 	
+	public ArrayList<Employee> getAllEmployees(){
+		ArrayList<Employee> employees = new ArrayList<Employee>();
+		for(int i = 0 ; i<this.departments.size(); i++) {
+			employees.addAll(this.departments.get(i).getEmployees());
+		}
+		return employees;
+	}
+	
 	public String getNom() {
 		return name;
 	}
@@ -106,7 +114,18 @@ public class Company {
 	}
 
 	public ArrayList<CheckTime> getChecks() {
-		return checks;
+		return this.checks;
+	}
+	
+	public ArrayList<CheckTime> getDailyChecks(){
+		ArrayList<CheckTime> dailyChecks = new ArrayList<CheckTime>();
+		LocalDate today = LocalDate.now();
+		for(int i = 0 ; i<this.checks.size(); i++) {
+			if(this.checks.get(i).getDatePointage().equals(today)) {
+				dailyChecks.add(this.checks.get(i));
+			}
+		}
+		return dailyChecks;
 	}
 	
 

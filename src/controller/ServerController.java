@@ -1,10 +1,12 @@
 package controller;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
 import kcjava.CheckTime;
@@ -23,9 +25,57 @@ public class ServerController {
     	initView();
     }
     
+    public void refreshCheckTables() {
+    	view.getPanel().removeAll();
+    	ArrayList<CheckTime> checks = this.model.getCompany().getChecks();
+    	Object[][] checksTab = new Object[checks.size()][3];
+    	for(int i=0; i<checks.size(); i++) {
+    		checksTab[i][0] = checks.get(i).getId();
+    		checksTab[i][1] = checks.get(i).dateToString();
+    		checksTab[i][2] = checks.get(i).hourToString();
+    	}
+    	String[] header = {"ID","Date","Time"};
+    	JTable checkTable = new JTable(checksTab,header);
+    	view.getPanel().add(checkTable.getTableHeader(),BorderLayout.NORTH);
+    	view.getPanel().add(checkTable, BorderLayout.CENTER);
+    	
+    	
+    	view.getPanel_1().removeAll();
+    	ArrayList<CheckTime> checksOfDay = this.model.getCompany().getDailyChecks();
+    	Object[][] checksOfDayTab = new Object[checksOfDay.size()][3];
+    	for(int i=0; i<checksOfDay.size(); i++) {
+    		checksOfDayTab[i][0] = checksOfDay.get(i).getId();
+    		checksOfDayTab[i][1] = checksOfDay.get(i).dateToString();
+    		checksOfDayTab[i][2] = checksOfDay.get(i).hourToString();
+    	}
+    	String[] header3 = {"ID","Date","Time"};
+    	JTable checkOfDayTable = new JTable(checksOfDayTab,header3);
+    	view.getPanel_1().add(checkOfDayTable.getTableHeader(),BorderLayout.NORTH);
+    	view.getPanel_1().add(checkOfDayTable, BorderLayout.CENTER);
+    }
+    
+    public void refreshEmployeesTable() {
+    	view.getPanel_2().removeAll();
+    	ArrayList<Employee> employees = this.model.getCompany().getAllEmployees();
+    	Object[][] employeesTab = new Object[employees.size()][4];
+    	for(int i=0; i<employees.size(); i++) {
+    		employeesTab[i][0] = employees.get(i).getId();
+    		employeesTab[i][1] = employees.get(i).getLastName();
+    		employeesTab[i][2] = employees.get(i).getFirstName();
+    		employeesTab[i][3] = employees.get(i).getStockH();
+    	}
+    	
+    	
+    	String[] header2 = {"ID","Last Name","First Name","Extra hours"};
+    	
+    	JTable checkTable2 = new JTable(employeesTab,header2);
+    	view.getPanel_2().add(checkTable2.getTableHeader(),BorderLayout.NORTH);
+    	view.getPanel_2().add(checkTable2, BorderLayout.CENTER);
+    }
+    
     public void initView() {
-    	//ArrayList<CheckTime> checks = this.model.getCompany().getChecks();
-    	//this.view.getTable().setModel((TableModel)checks.get(0));
+    	refreshCheckTables();
+    	refreshEmployeesTable();
     }
     
     public void initController() {
@@ -64,6 +114,7 @@ public class ServerController {
 					String firstName = view.getFieldNewFirstName().getText();
 					String department = view.getFieldDepartment().getText();
 					model.getCompany().addEmployee(new Employee(id,lastName,firstName,new Planning(arrivals, departures),0), department);
+					refreshEmployeesTable();
 				}
 			}
     		
@@ -101,6 +152,7 @@ public class ServerController {
 					departures[4]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
 					
 					model.getCompany().modifyEmployee(id, new Planning(arrivals, departures));
+					refreshEmployeesTable();
 				}
 				
 			}

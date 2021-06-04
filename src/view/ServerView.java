@@ -22,9 +22,6 @@ import javax.swing.SpinnerModel;
 public class ServerView {
 	private JFrame frame;
 	private JTabbedPane tabbedPane;
-	private JTable table;
-	private JTable table_1;
-	private JTable table_2;
 	private JTextField fieldNewLastName;
 	private JTextField fieldNewFirstName;
 	private JTextField fieldNewId;
@@ -35,6 +32,7 @@ public class ServerView {
 	spinner_16,spinner_17,spinner_18,spinner_19;
 	private JButton submitNew,submitModif;
 	private JTextField fieldDepartment;
+	private JPanel panel,panel_1,panel_2;
 	public ServerView(String title) {
 		
         this.frame = new JFrame(title);
@@ -46,26 +44,20 @@ public class ServerView {
         JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.addTab("Checks", null, tabbedPane_1, null);
         
-        JPanel panel = new JPanel();
+        panel = new JPanel();
         tabbedPane_1.addTab("All checks", null, panel, null);
+        panel.setLayout(new BorderLayout(0, 0));
         
-        table = new JTable();
-        panel.add(table);
-        
-        JPanel panel_1 = new JPanel();
+        panel_1 = new JPanel();
         tabbedPane_1.addTab("Checks of the day", null, panel_1, null);
-        
-        table_1 = new JTable();
-        panel_1.add(table_1);
+        panel_1.setLayout(new BorderLayout(0, 0));
         
         JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.addTab("Employees", null, tabbedPane_2, null);
         
-        JPanel panel_2 = new JPanel();
+        panel_2 = new JPanel();
         tabbedPane_2.addTab("List", null, panel_2, null);
-        
-        table_2 = new JTable();
-        panel_2.add(table_2);
+        panel_2.setLayout(new BorderLayout(0, 0));
         
         JPanel panel_3 = new JPanel();
         tabbedPane_2.addTab("New", null, panel_3, null);
@@ -374,6 +366,15 @@ public class ServerView {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 	}
+	public JPanel getPanel() {
+		return panel;
+	}
+	public JPanel getPanel_1() {
+		return panel_1;
+	}
+	public JPanel getPanel_2() {
+		return panel_2;
+	}
 	public JTextField getFieldDepartment() {
 		return fieldDepartment;
 	}
@@ -460,15 +461,6 @@ public class ServerView {
 	}
 	public JTabbedPane getTabbedPane() {
 		return tabbedPane;
-	}
-	public JTable getTable() {
-		return table;
-	}
-	public JTable getTable_1() {
-		return table_1;
-	}
-	public JTable getTable_2() {
-		return table_2;
 	}
 	public JTextField getTextField() {
 		return fieldNewLastName;
