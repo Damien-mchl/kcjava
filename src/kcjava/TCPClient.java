@@ -32,9 +32,9 @@ public class TCPClient {
 			
 		try {
 			// Tentative de connection au serveur
-			socketOfClient = new Socket(ServerIP,portClient);
+			socketOfClient = new Socket(this.ServerIP,this.portClient);
 			socketOfClient.setSoTimeout(5000); // Au bout de 5 sec on considere que la requete a echouee
-			System.out.println("Connexion etablie avec le serveur "+ServerIP+" sur le port "+portClient);
+			System.out.println("Connexion etablie avec le serveur "+this.ServerIP+" sur le port "+this.portClient);
 				
 			this.outputStream = new ObjectOutputStream(socketOfClient.getOutputStream());
 			this.inputStream = new ObjectInputStream(socketOfClient.getInputStream());
@@ -90,12 +90,29 @@ public class TCPClient {
 		
 		try {
 			// Envoi de la CheckTime
-			outputStream.writeObject(check);
+			outputStream.writeObject(this.check);
 			
 			// Recuperation de la reponse serveur
 			String repServeur = (String)inputStream.readObject();
 			System.out.println(repServeur);
 			
+			// Envoi de ce qu'il ya dans la file d'attente sauvegardee
+			File f = new File(savePath);
+			ArrayList<CheckTime> waitingChecks;
+			if(f.exists()) {
+				waitingChecks = Sauvegarde.charger(savePath);
+				System.out.println("Waiting Check loaded");
+				
+				for(CheckTime c : waitingChecks) {
+					// Envoi de la CheckTime
+					outputStream.writeObject(c);
+					
+					// Recuperation de la reponse serveur
+					String rep = (String)inputStream.readObject();
+					System.out.println(rep);
+				}
+			}
+			f.delete();
 			outputStream.close();
 			inputStream.close();
 			socketOfClient.close();
