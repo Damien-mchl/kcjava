@@ -12,12 +12,14 @@ public abstract class Sauvegarde {
      * @param j joueur a sauvegarder
      * @throws ExceptionSauvegarde
      */
-    public static void sauvegarder(ArrayList<CheckTime> Check, String path) throws ExceptionSauvegarde{
+    public static void sauvegarder(ArrayList<CheckTime> Checks, String path) throws ExceptionSauvegarde{
         try {
             ObjectOutputStream dos;
-            dos = new ObjectOutputStream(new FileOutputStream(new File(path)));
-            dos.writeObject(Check);
+            dos = new ObjectOutputStream(new FileOutputStream(path));
+            dos.writeObject(Checks);
             dos.close();
+        } catch (FileNotFoundException e) {
+            throw new ExceptionSauvegarde("Fichier introuvable");
         } catch (NotSerializableException e) {
             throw new ExceptionSauvegarde("Probleme de serialization");
         } catch (IOException e) {
@@ -27,7 +29,7 @@ public abstract class Sauvegarde {
     public static void sauvegarderCompany(Company comp, String path) throws ExceptionSauvegarde{
         try {
             ObjectOutputStream dos;
-            dos = new ObjectOutputStream(new FileOutputStream(new File(path)));
+            dos = new ObjectOutputStream(new FileOutputStream(path));
             dos.writeObject(comp);
             dos.close();
         } catch (NotSerializableException e) {
@@ -59,7 +61,7 @@ public abstract class Sauvegarde {
         return Check;
     }
     public static Company chargerCompany(String path) throws ExceptionSauvegarde{
-    	Company comp = null;
+    	Company comp;
         try {
             ObjectInputStream dis = new ObjectInputStream(new FileInputStream(path));
             comp = (Company)(dis.readObject());
