@@ -11,30 +11,12 @@ public class TCPClient {
 	public final String ServerIP;
  	public final int portClient;
 	private CheckTime check = null;
+	public final static String savePath = "saveClient";
 	
 	private ObjectOutputStream outputStream = null;
 	private ObjectInputStream inputStream = null;
 	
-	public static void main(String[] args) throws Exception{
-		//Check-IN
-				CheckTime checkTest = new CheckTime(LocalTime.now(), LocalDate.now(), 4);
-				CheckTime checkTest2 = new CheckTime(LocalTime.now(), LocalDate.now(), 7);
-				CheckTime checkTest3 = new CheckTime(LocalTime.now(), LocalDate.now(), 5);
-				CheckTime checkTest4 = new CheckTime(LocalTime.now(), LocalDate.now(), 1);
-				CheckTime checkTest5 = new CheckTime(LocalTime.now(), LocalDate.now(), 2);
-				
-				
-				System.out.println("L'employee 4, 7, 5, 1, 2 ont check-IN");
-				
-			
-				new TCPClient(checkTest, "localhost", 8081);
-				new TCPClient(checkTest2, "localhost", 8081);
-				new TCPClient(checkTest3, "localhost", 8081);
-				new TCPClient(checkTest4, "localhost", 8081);
-				new TCPClient(checkTest5, "localhost", 8081);
-				
-				System.out.println("Check-IN envoye");
-	}
+	
 	public TCPClient(CheckTime check, String ip, int port) throws Exception{
 
 		this.check = check;

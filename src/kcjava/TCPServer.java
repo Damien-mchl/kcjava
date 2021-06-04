@@ -1,5 +1,6 @@
 package kcjava;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -18,8 +19,18 @@ public class TCPServer{
 	public static final int PORT = 3191;
 	private Company company;
 	public static ServerController controller;
+	
+	public String savePath;
+	
 	public TCPServer(Company company) throws Exception{
-			this.company = company;
+			// Deduction du fichier de sauvegarde associé
+			savePath = "saves/"+company.getNom()+".ser";
+			File f = new File(savePath);
+			if(f.exists())
+				this.company = Sauvegarde.chargerCompany(savePath);
+			else
+				this.company = company;
+			
 			ServerSocket serverSocket = null;
 			
 			// Nombre de connections
@@ -28,7 +39,7 @@ public class TCPServer{
 			// Essaye d'ouvrir le serveur socket sur le port PORT
 			try {
 				serverSocket = new ServerSocket(PORT);
-				System.out.println("Le serveur est Ã  l'Ã©coute du port "+ PORT);
+				System.out.println("Le serveur est a  l'ecoute du port "+ PORT);
 			}catch(IOException e) {
 				System.out.println(e);
 			}
@@ -39,11 +50,13 @@ public class TCPServer{
 				controller.initController();
 				while(true) {
 					Socket socket = serverSocket.accept();
-					System.out.println("Connexion client acceptÃ©e.");
+					System.out.println("Connexion client acceptee.");
 					new ServiceThread(socket, clientNumber++).start();
 				}
 			}finally {
 				serverSocket.close();
+				// LE BOUT DE CODE POUR MR MICHEL DAMIEN PREMIER DU NOM
+				Sauvegarde.sauvegarderCompany(this.company, savePath);
 			}
 	}
 	public static void refreshTable() {
@@ -58,7 +71,7 @@ public class TCPServer{
 			this.clientNumber = clientNumber;
 			this.socket = socket;
 			
-			System.out.println("New connection with " + this.clientNumber + "at" + socket);
+			System.out.println("New connection with " + this.clientNumber + " at " + socket);
 		}
 		@Override
 		public void run() {
