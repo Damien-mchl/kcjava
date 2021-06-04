@@ -22,7 +22,8 @@ public class Department {
 	 * 
 	 * */
 	public void addEmployee(Employee e) {
-		this.employees.add(e);
+		if(!this.employees.contains(e))
+			this.employees.add(e);
 	}
 	/*
 	 * @brief Supprime un employé du tableau des employés
@@ -68,6 +69,24 @@ public class Department {
 	 * */
 	public void setEmployes(ArrayList<Employee> employees) {
 		this.employees = employees;
+	}
+	
+	public boolean containsEmployeeDep(int id) {
+		boolean contains = false;
+		for(int i=0; i<this.employees.size(); i++) {
+			if(this.employees.get(i).getId()==id) {
+				contains = true;
+			}
+		}
+		return contains;
+	}
+	
+	public void modifyEmployeeDep(int id, Planning planning) {
+		for(int i=0; i<this.employees.size(); i++) {
+			if(this.employees.get(i).getId()==id) {
+				this.employees.get(i).setPlanning(planning);
+			}
+		}
 	}
 	
 	

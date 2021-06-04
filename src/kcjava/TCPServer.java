@@ -16,8 +16,9 @@ import view.View;
 
 public class TCPServer{
 	public static final int PORT = 3191;
-
-	public TCPServer() throws Exception{
+	private Company company;
+	public TCPServer(Company company) throws Exception{
+			this.company = company;
 			ServerSocket serverSocket = null;
 			
 			// Nombre de connections
@@ -32,7 +33,7 @@ public class TCPServer{
 			}
 			try {
 				ServerView view = new ServerView("Time tracker emulator - V1.4 - Server");
-				ServerModel model = new ServerModel();
+				ServerModel model = new ServerModel(this.company);
 				ServerController controller = new ServerController(model,view);
 				controller.initController();
 				while(true) {
@@ -64,7 +65,7 @@ public class TCPServer{
 					// On recup le checkTime envoye par la pointeuse
 					CheckTime check = (CheckTime)inputStream.readObject();
 					System.out.println("Donnees recup sur employe nb : "+check.getId());
-					
+					company.addCheck(check);
 					
 					// On repond a la poiteuse
 					String rep = new String("Bien recu");

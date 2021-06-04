@@ -60,6 +60,38 @@ public class Company {
 			this.checks.add(check);
 		}
 	}
+	
+	public boolean containsEmployee(int id) {
+		boolean contains = false;
+		for(int i=0; i<this.departments.size();i++) {
+			if(this.departments.get(i).containsEmployeeDep(id)) {
+				contains = true;
+			}
+		}
+		return contains;
+	}
+	
+	public void modifyEmployee(int id, Planning planning) {
+		for(int i=0; i<this.departments.size();i++) {
+			this.departments.get(i).modifyEmployeeDep(id,planning);
+		}
+	}
+	
+	public void addEmployee(Employee emp, String department) {
+		boolean added = false;
+		for(int i=0; i<this.departments.size();i++) {
+			if(this.departments.get(i).getName().equals(department)) {
+				this.departments.get(i).addEmployee(emp);
+				added = true;
+			}
+		}
+		if(!added) {
+			Department dep = new Department(department);
+			dep.addEmployee(emp);
+			this.addDepartment(dep);
+		}
+	}
+	
 	public String getNom() {
 		return name;
 	}
