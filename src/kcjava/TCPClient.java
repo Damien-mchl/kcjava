@@ -34,7 +34,6 @@ public class TCPClient {
 			// Tentative de connection au serveur
 			socketOfClient = new Socket(this.ServerIP,this.portClient);
 			socketOfClient.setSoTimeout(5000); // Au bout de 5 sec on considere que la requete a echouee
-			System.out.println("Connexion etablie avec le serveur "+this.ServerIP+" sur le port "+this.portClient);
 				
 			this.outputStream = new ObjectOutputStream(socketOfClient.getOutputStream());
 			this.inputStream = new ObjectInputStream(socketOfClient.getInputStream());
@@ -101,7 +100,6 @@ public class TCPClient {
 			ArrayList<CheckTime> waitingChecks;
 			if(f.exists()) {
 				waitingChecks = Sauvegarde.charger(savePath);
-				System.out.println("Waiting Check loaded");
 				
 				for(CheckTime c : waitingChecks) {
 					// Envoi de la CheckTime

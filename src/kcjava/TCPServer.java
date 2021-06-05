@@ -39,18 +39,16 @@ public class TCPServer{
 			// Essaye d'ouvrir le serveur socket sur le port PORT
 			try {
 				serverSocket = new ServerSocket(PORT);
-				System.out.println("Le serveur est a  l'ecoute du port "+ PORT);
 			}catch(IOException e) {
 				System.out.println(e);
 			}
 			try {
-				ServerView view = new ServerView("Time tracker emulator - V1.4 - Server");
+				ServerView view = new ServerView("Time Clock - Server");
 				ServerModel model = new ServerModel(this.company);
 				controller = new ServerController(model,view);
 				controller.initController();
 				while(true) {
 					Socket socket = serverSocket.accept();
-					System.out.println("Connexion client acceptee.");
 					new ServiceThread(socket, clientNumber++).start();
 				}
 			}finally {
@@ -69,8 +67,6 @@ public class TCPServer{
 		public ServiceThread(Socket socket, int clientNumber) {
 			this.clientNumber = clientNumber;
 			this.socket = socket;
-			
-			System.out.println("New connection with " + this.clientNumber + " at " + socket);
 		}
 		@Override
 		public void run() {
@@ -81,7 +77,6 @@ public class TCPServer{
 				while(true) {
 					// On recup le checkTime envoye par la pointeuse
 					CheckTime check = (CheckTime)inputStream.readObject();
-					System.out.println("Donnees recup sur employe nb : "+check.getId());
 					if(company.containsEmployee(check.getId())) {
 						company.addCheck(check);
 					}

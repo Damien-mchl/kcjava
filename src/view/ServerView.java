@@ -124,7 +124,7 @@ public class ServerView {
         panel_3.add(spinner);
         JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(spinner, "HH:mm");
         spinner.setEditor(timeEditor);
-        spinner.setValue(new Date());
+        spinner.setValue(new Date(2021,6,5,8,0));
         
         JLabel lblTo = new JLabel("to");
         panel_3.add(lblTo);
@@ -133,7 +133,7 @@ public class ServerView {
         panel_3.add(spinner_1);
         JSpinner.DateEditor timeEditor1 = new JSpinner.DateEditor(spinner_1, "HH:mm");
         spinner_1.setEditor(timeEditor1);
-        spinner_1.setValue(new Date());
+        spinner_1.setValue(new Date(2021,6,5,17,0));
         
         JSeparator separator = new JSeparator();
         separator.setPreferredSize(new Dimension(9000, 0));
@@ -146,7 +146,7 @@ public class ServerView {
         panel_3.add(spinner_2);
         JSpinner.DateEditor timeEditor2 = new JSpinner.DateEditor(spinner_2, "HH:mm");
         spinner_2.setEditor(timeEditor2);
-        spinner_2.setValue(new Date());
+        spinner_2.setValue(new Date(2021,6,5,8,0));
         
         JLabel lblTo_1 = new JLabel("to");
         panel_3.add(lblTo_1);
@@ -155,7 +155,7 @@ public class ServerView {
         panel_3.add(spinner_3);
         JSpinner.DateEditor timeEditor3 = new JSpinner.DateEditor(spinner_3, "HH:mm");
         spinner_3.setEditor(timeEditor3);
-        spinner_3.setValue(new Date());
+        spinner_3.setValue(new Date(2021,6,5,17,0));
         
         JSeparator separator_5 = new JSeparator();
         separator_5.setPreferredSize(new Dimension(9000, 0));
@@ -168,7 +168,7 @@ public class ServerView {
         panel_3.add(spinner_4);
         JSpinner.DateEditor timeEditor4 = new JSpinner.DateEditor(spinner_4, "HH:mm");
         spinner_4.setEditor(timeEditor4);
-        spinner_4.setValue(new Date());
+        spinner_4.setValue(new Date(2021,6,5,8,0));
         
         JLabel lblTo_2 = new JLabel("to");
         panel_3.add(lblTo_2);
@@ -177,7 +177,7 @@ public class ServerView {
         panel_3.add(spinner_5);
         JSpinner.DateEditor timeEditor5 = new JSpinner.DateEditor(spinner_5, "HH:mm");
         spinner_5.setEditor(timeEditor5);
-        spinner_5.setValue(new Date());
+        spinner_5.setValue(new Date(2021,6,5,17,0));
         
         JSeparator separator_6 = new JSeparator();
         separator_6.setPreferredSize(new Dimension(9000, 0));
@@ -190,7 +190,7 @@ public class ServerView {
         panel_3.add(spinner_6);
         JSpinner.DateEditor timeEditor6 = new JSpinner.DateEditor(spinner_6, "HH:mm");
         spinner_6.setEditor(timeEditor6);
-        spinner_6.setValue(new Date());
+        spinner_6.setValue(new Date(2021,6,5,8,0));
         
         JLabel lblTo_3 = new JLabel("to");
         panel_3.add(lblTo_3);
@@ -199,7 +199,7 @@ public class ServerView {
         panel_3.add(spinner_7);
         JSpinner.DateEditor timeEditor7 = new JSpinner.DateEditor(spinner_7, "HH:mm");
         spinner_7.setEditor(timeEditor7);
-        spinner_7.setValue(new Date());
+        spinner_7.setValue(new Date(2021,6,5,17,0));
         
         JSeparator separator_7 = new JSeparator();
         separator_7.setPreferredSize(new Dimension(9000, 0));
@@ -212,7 +212,7 @@ public class ServerView {
         panel_3.add(spinner_8);
         JSpinner.DateEditor timeEditor8 = new JSpinner.DateEditor(spinner_8, "HH:mm");
         spinner_8.setEditor(timeEditor8);
-        spinner_8.setValue(new Date());
+        spinner_8.setValue(new Date(2021,6,5,8,0));
         
         JLabel lblTo_4 = new JLabel("to");
         panel_3.add(lblTo_4);
@@ -221,7 +221,7 @@ public class ServerView {
         panel_3.add(spinner_9);
         JSpinner.DateEditor timeEditor9 = new JSpinner.DateEditor(spinner_9, "HH:mm");
         spinner_9.setEditor(timeEditor9);
-        spinner_9.setValue(new Date());
+        spinner_9.setValue(new Date(2021,6,5,17,0));
         
         JSeparator separator_8 = new JSeparator();
         separator_8.setPreferredSize(new Dimension(9000, 0));
@@ -258,7 +258,7 @@ public class ServerView {
         panel_4.add(spinner_10);
         JSpinner.DateEditor timeEditor10 = new JSpinner.DateEditor(spinner_10, "HH:mm");
         spinner_10.setEditor(timeEditor10);
-        spinner_10.setValue(new Date());
+        spinner_10.setValue(new Date(2021,6,5,8,0));
         
         JLabel label_2 = new JLabel("to");
         panel_4.add(label_2);
@@ -267,7 +267,7 @@ public class ServerView {
         panel_4.add(spinner_11);
         JSpinner.DateEditor timeEditor11 = new JSpinner.DateEditor(spinner_11, "HH:mm");
         spinner_11.setEditor(timeEditor11);
-        spinner_11.setValue(new Date());
+        spinner_11.setValue(new Date(2021,6,5,17,0));
         
         JSeparator separator_11 = new JSeparator();
         separator_11.setPreferredSize(new Dimension(9000, 0));
@@ -280,7 +280,7 @@ public class ServerView {
         panel_4.add(spinner_12);
         JSpinner.DateEditor timeEditor12 = new JSpinner.DateEditor(spinner_12, "HH:mm");
         spinner_12.setEditor(timeEditor12);
-        spinner_12.setValue(new Date());
+        spinner_12.setValue(new Date(2021,6,5,8,0));
         
         JLabel label_4 = new JLabel("to");
         panel_4.add(label_4);
@@ -289,7 +289,7 @@ public class ServerView {
         panel_4.add(spinner_13);
         JSpinner.DateEditor timeEditor13 = new JSpinner.DateEditor(spinner_13, "HH:mm");
         spinner_13.setEditor(timeEditor13);
-        spinner_13.setValue(new Date());
+        spinner_13.setValue(new Date(2021,6,5,17,0));
         
         JSeparator separator_12 = new JSeparator();
         separator_12.setPreferredSize(new Dimension(9000, 0));
@@ -303,7 +303,7 @@ public class ServerView {
         panel_4.add(spinner_14);
         JSpinner.DateEditor timeEditor14 = new JSpinner.DateEditor(spinner_14, "HH:mm");
         spinner_14.setEditor(timeEditor14);
-        spinner_14.setValue(new Date());
+        spinner_14.setValue(new Date(2021,6,5,8,0));
         
         JLabel label_6 = new JLabel("to");
         panel_4.add(label_6);
@@ -312,7 +312,7 @@ public class ServerView {
         panel_4.add(spinner_15);
         JSpinner.DateEditor timeEditor15 = new JSpinner.DateEditor(spinner_15, "HH:mm");
         spinner_15.setEditor(timeEditor15);
-        spinner_15.setValue(new Date());
+        spinner_15.setValue(new Date(2021,6,5,17,0));
         
         JSeparator separator_13 = new JSeparator();
         separator_13.setPreferredSize(new Dimension(9000, 0));
@@ -325,7 +325,7 @@ public class ServerView {
         panel_4.add(spinner_16);
         JSpinner.DateEditor timeEditor16 = new JSpinner.DateEditor(spinner_16, "HH:mm");
         spinner_16.setEditor(timeEditor16);
-        spinner_16.setValue(new Date());
+        spinner_16.setValue(new Date(2021,6,5,8,0));
         
         JLabel label_8 = new JLabel("to");
         panel_4.add(label_8);
@@ -334,7 +334,7 @@ public class ServerView {
         panel_4.add(spinner_17);
         JSpinner.DateEditor timeEditor17 = new JSpinner.DateEditor(spinner_17, "HH:mm");
         spinner_17.setEditor(timeEditor17);
-        spinner_17.setValue(new Date());
+        spinner_17.setValue(new Date(2021,6,5,17,0));
         
         JSeparator separator_14 = new JSeparator();
         separator_14.setPreferredSize(new Dimension(9000, 0));
@@ -347,7 +347,7 @@ public class ServerView {
         panel_4.add(spinner_18);
         JSpinner.DateEditor timeEditor18 = new JSpinner.DateEditor(spinner_18, "HH:mm");
         spinner_18.setEditor(timeEditor18);
-        spinner_18.setValue(new Date());
+        spinner_18.setValue(new Date(2021,6,5,8,0));
         
         JLabel label_10 = new JLabel("to");
         panel_4.add(label_10);
@@ -356,7 +356,7 @@ public class ServerView {
         panel_4.add(spinner_19);
         JSpinner.DateEditor timeEditor19 = new JSpinner.DateEditor(spinner_19, "HH:mm");
         spinner_19.setEditor(timeEditor19);
-        spinner_19.setValue(new Date());
+        spinner_19.setValue(new Date(2021,6,5,17,0));
         
         JSeparator separator_15 = new JSeparator();
         separator_15.setPreferredSize(new Dimension(9000, 0));
