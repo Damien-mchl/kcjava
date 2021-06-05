@@ -59,6 +59,7 @@ public class TCPServer{
 	}
 	public static void refreshTable() {
 		controller.refreshCheckTables();
+		controller.refreshEmployeesTable();
 	}
 	
 	private class ServiceThread extends Thread{
@@ -81,7 +82,9 @@ public class TCPServer{
 					// On recup le checkTime envoye par la pointeuse
 					CheckTime check = (CheckTime)inputStream.readObject();
 					System.out.println("Donnees recup sur employe nb : "+check.getId());
-					company.addCheck(check);
+					if(company.containsEmployee(check.getId())) {
+						company.addCheck(check);
+					}
 					// On refresh l'affichage
 					TCPServer.refreshTable();
 					// On repond a la poiteuse

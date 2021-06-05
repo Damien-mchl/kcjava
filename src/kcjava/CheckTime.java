@@ -130,7 +130,7 @@ public class CheckTime implements Serializable{
 	}
 
 	public String hourToString() {
-		return this.heurePointage.toString();
+		return this.heurePointage.toString().substring(0, 5);
 	}
 	
 	public String dateToString() {

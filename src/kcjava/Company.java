@@ -61,10 +61,17 @@ public class Company implements Serializable{
 		}
 	}
 	public void addCheck(CheckTime check) {
-		if(!this.checks.contains(check)) {
-			this.checks.add(check);
-		}
-	}
+        if(!this.checks.contains(check)) {
+            this.checks.add(check);
+            for(Department d : departments) {
+                for(Employee e : d.getEmployees()) {
+                    if(e.getId() == check.getId()) {
+                        e.planningCompare(check);
+                    }
+                }
+            }
+        }
+    }
 	
 	public boolean containsEmployee(int id) {
 		boolean contains = false;

@@ -14,12 +14,3 @@ public class MainClient {
 	}
 
 }
-
-/*public class main{
-	public static void main(String[] args) throws Exception{
-		Company comp = new Company("comp", 15);
-		
-
-	}
-
-}*/

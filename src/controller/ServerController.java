@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
@@ -40,9 +41,15 @@ public class ServerController {
     		checksTab[i][2] = checks.get(i).hourToString();
     	}
     	String[] header = {"ID","Date","Time"};
-    	JTable checkTable = new JTable(checksTab,header);
-    	view.getPanel().add(checkTable.getTableHeader(),BorderLayout.NORTH);
-    	view.getPanel().add(checkTable, BorderLayout.CENTER);
+    	JTable checkTable = new JTable(checksTab,header){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column) {                
+                    return false;               
+            };
+        };
+    	JScrollPane jspane = new JScrollPane(checkTable);
+    	view.getPanel().add(jspane, BorderLayout.CENTER);
     	
     	
     	view.getPanel_1().removeAll();
@@ -54,9 +61,17 @@ public class ServerController {
     		checksOfDayTab[i][2] = checksOfDay.get(i).hourToString();
     	}
     	String[] header3 = {"ID","Date","Time"};
-    	JTable checkOfDayTable = new JTable(checksOfDayTab,header3);
-    	view.getPanel_1().add(checkOfDayTable.getTableHeader(),BorderLayout.NORTH);
-    	view.getPanel_1().add(checkOfDayTable, BorderLayout.CENTER);
+    	JTable checkOfDayTable = new JTable(checksOfDayTab,header3){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column) {                
+                    return false;               
+            };
+        };
+    	JScrollPane jspane2 = new JScrollPane(checkOfDayTable);
+    	view.getPanel_1().add(jspane2, BorderLayout.CENTER);
+    	
+    	view.getFrame().pack();
     }
     
     public void refreshEmployeesTable() {
@@ -67,15 +82,27 @@ public class ServerController {
     		employeesTab[i][0] = employees.get(i).getId();
     		employeesTab[i][1] = employees.get(i).getLastName();
     		employeesTab[i][2] = employees.get(i).getFirstName();
-    		employeesTab[i][3] = employees.get(i).getStockH();
+    		if(employees.get(i).getStockH()<0) {
+    			employeesTab[i][3] = "-"+Math.abs(employees.get(i).getStockH()/60)+":"+Math.abs(employees.get(i).getStockH()%60);
+    		}else {
+    			employeesTab[i][3] = "+"+employees.get(i).getStockH()/60+":"+employees.get(i).getStockH()%60;
+    		}
+    		
     	}
     	
     	
     	String[] header2 = {"ID","Last Name","First Name","Extra hours"};
     	
-    	JTable checkTable2 = new JTable(employeesTab,header2);
-    	view.getPanel_2().add(checkTable2.getTableHeader(),BorderLayout.NORTH);
-    	view.getPanel_2().add(checkTable2, BorderLayout.CENTER);
+    	JTable employeesTable = new JTable(employeesTab,header2){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column) {                
+                    return false;               
+            };
+        };
+    	JScrollPane jspane3 = new JScrollPane(employeesTable);
+    	view.getPanel_2().add(jspane3, BorderLayout.CENTER);
+    	view.getFrame().pack();
     }
     
     public void initView() {
@@ -94,42 +121,44 @@ public class ServerController {
                 System.exit(0);
             }
         });
+    	//new employee
     	this.view.getSubmitNew().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(!view.getFieldNewId().getText().isEmpty() && !view.getFieldDepartment().getText().isEmpty() && !view.getFieldNewFirstName().getText().isEmpty() && !view.getFieldNewLastName().getText().isEmpty()) {
 					int id = Integer.parseInt(view.getFieldNewId().getText());
-					
-					LocalTime[] arrivals = new LocalTime[5];
-					String[] splittedTime = view.getSpinner().getValue().toString().substring(11,19).split(":");
-					arrivals[0]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
-					splittedTime = view.getSpinner_2().getValue().toString().substring(11,19).split(":");
-					arrivals[1]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
-					splittedTime = view.getSpinner_4().getValue().toString().substring(11,19).split(":");
-					arrivals[2]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
-					splittedTime = view.getSpinner_6().getValue().toString().substring(11,19).split(":");
-					arrivals[3]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
-					splittedTime = view.getSpinner_8().getValue().toString().substring(11,19).split(":");
-					arrivals[4]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
-					
-					LocalTime[] departures = new LocalTime[5];
-					splittedTime = view.getSpinner_1().getValue().toString().substring(11,19).split(":");
-					departures[0]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
-					splittedTime = view.getSpinner_3().getValue().toString().substring(11,19).split(":");
-					departures[1]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
-					splittedTime = view.getSpinner_5().getValue().toString().substring(11,19).split(":");
-					departures[2]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
-					splittedTime = view.getSpinner_7().getValue().toString().substring(11,19).split(":");
-					departures[3]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
-					splittedTime = view.getSpinner_9().getValue().toString().substring(11,19).split(":");
-					departures[4]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
-					
-					String lastName = view.getFieldNewLastName().getText();
-					String firstName = view.getFieldNewFirstName().getText();
-					String department = view.getFieldDepartment().getText();
-					model.getCompany().addEmployee(new Employee(id,lastName,firstName,new Planning(arrivals, departures),0), department);
-					refreshEmployeesTable();
+					if(!model.getCompany().containsEmployee(id)) {
+						LocalTime[] arrivals = new LocalTime[5];
+						String[] splittedTime = view.getSpinner().getValue().toString().substring(11,19).split(":");
+						arrivals[0]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
+						splittedTime = view.getSpinner_2().getValue().toString().substring(11,19).split(":");
+						arrivals[1]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
+						splittedTime = view.getSpinner_4().getValue().toString().substring(11,19).split(":");
+						arrivals[2]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
+						splittedTime = view.getSpinner_6().getValue().toString().substring(11,19).split(":");
+						arrivals[3]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
+						splittedTime = view.getSpinner_8().getValue().toString().substring(11,19).split(":");
+						arrivals[4]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
+						
+						LocalTime[] departures = new LocalTime[5];
+						splittedTime = view.getSpinner_1().getValue().toString().substring(11,19).split(":");
+						departures[0]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
+						splittedTime = view.getSpinner_3().getValue().toString().substring(11,19).split(":");
+						departures[1]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
+						splittedTime = view.getSpinner_5().getValue().toString().substring(11,19).split(":");
+						departures[2]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
+						splittedTime = view.getSpinner_7().getValue().toString().substring(11,19).split(":");
+						departures[3]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
+						splittedTime = view.getSpinner_9().getValue().toString().substring(11,19).split(":");
+						departures[4]=CheckTime.roundTime(LocalTime.of(Integer.parseInt(splittedTime[0]),Integer.parseInt(splittedTime[1])));
+						
+						String lastName = view.getFieldNewLastName().getText();
+						String firstName = view.getFieldNewFirstName().getText();
+						String department = view.getFieldDepartment().getText();
+						model.getCompany().addEmployee(new Employee(id,lastName,firstName,new Planning(arrivals, departures),0), department);
+						refreshEmployeesTable();
+					}
 				}
 			}
     		

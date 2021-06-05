@@ -72,6 +72,7 @@ public class View {
                panel.add(ip_label);
                
                ip_textfield = new JTextField();
+               ip_textfield.setText("localhost");
                panel.add(ip_textfield);
                ip_textfield.setColumns(15);
                
@@ -79,6 +80,7 @@ public class View {
                panel.add(label_port);
                
                port_textfield = new JFormattedTextField();
+               port_textfield.setText("3191");
                port_textfield.setColumns(6);
                panel.add(port_textfield);
 		// Create views swing UI components

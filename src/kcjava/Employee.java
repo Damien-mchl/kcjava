@@ -55,12 +55,12 @@ public class Employee implements Serializable{
 			int isSup = checkTime.getHeurePointage().compareTo(this.planning.getDeparturesByDay(getActualDayInt()));
 			long between = checkTime.getHeurePointage().until(this.planning.getDeparturesByDay(getActualDayInt()), MINUTES);
 			
-			if(isSup > 0) { // Part en avance
-				this.stockH -= between;
+			if(isSup > 0) { //Part plus tard
+				this.stockH += between;
 			}
 
-			else if(isSup < 0) { // Part en retard
-				this.stockH += between;
+			else if(isSup < 0) { //Part en avance
+				this.stockH -= between;
 			}
 			
 			this.checked = false;
@@ -170,7 +170,7 @@ public class Employee implements Serializable{
 	 * 
 	 * */
 	public long getStockH() {
-		return stockH;
+		return this.stockH;
 	}
 	
 	/*
@@ -193,6 +193,9 @@ public class Employee implements Serializable{
 		LocalDate date = LocalDate.now();
 		DayOfWeek day;
 		day = date.getDayOfWeek();
-		return day.getValue() - 1; 
+		if(day.getValue()>5) {
+			return 0;
+		}
+		return day.getValue()-1; 
 	}
 }
