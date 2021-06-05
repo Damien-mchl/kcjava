@@ -3,6 +3,8 @@ package controller;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -11,7 +13,10 @@ import javax.swing.table.TableModel;
 
 import kcjava.CheckTime;
 import kcjava.Employee;
+import kcjava.ExceptionSauvegarde;
 import kcjava.Planning;
+import kcjava.Sauvegarde;
+import kcjava.TCPServer;
 import model.ServerModel;
 import view.ServerView;
 
@@ -79,6 +84,16 @@ public class ServerController {
     }
     
     public void initController() {
+    	this.view.getFrame().addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+            	try {
+					Sauvegarde.sauvegarderCompany(model.getCompany(), TCPServer.savePath);
+				} catch (ExceptionSauvegarde e1) {
+					
+				}
+                System.exit(0);
+            }
+        });
     	this.view.getSubmitNew().addActionListener(new ActionListener() {
 
 			@Override

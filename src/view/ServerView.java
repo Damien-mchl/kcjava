@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Date;
 
 import javax.swing.JPanel;
@@ -18,6 +20,8 @@ import javax.swing.JSeparator;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.SpinnerModel;
+
+import kcjava.Sauvegarde;
 
 public class ServerView {
 	private JFrame frame;
@@ -360,8 +364,6 @@ public class ServerView {
         
         submitModif = new JButton("Submit");
         panel_4.add(submitModif);
-        
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

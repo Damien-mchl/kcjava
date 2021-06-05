@@ -20,7 +20,7 @@ public class TCPServer{
 	private Company company;
 	public static ServerController controller;
 	
-	public String savePath;
+	public static String savePath;
 	
 	public TCPServer(Company company) throws Exception{
 			// Deduction du fichier de sauvegarde associé
@@ -55,8 +55,6 @@ public class TCPServer{
 				}
 			}finally {
 				serverSocket.close();
-				// LE BOUT DE CODE POUR MR MICHEL DAMIEN PREMIER DU NOM
-				Sauvegarde.sauvegarderCompany(this.company, savePath);
 			}
 	}
 	public static void refreshTable() {

@@ -27,11 +27,14 @@ public abstract class Sauvegarde {
         }
     }
     public static void sauvegarderCompany(Company comp, String path) throws ExceptionSauvegarde{
-        try {
+    	try {
+    		path="saves/test.ser";
             ObjectOutputStream dos;
             dos = new ObjectOutputStream(new FileOutputStream(path));
             dos.writeObject(comp);
             dos.close();
+        } catch (FileNotFoundException e) {
+            throw new ExceptionSauvegarde("Fichier introuvable");
         } catch (NotSerializableException e) {
             throw new ExceptionSauvegarde("Probleme de serialization");
         } catch (IOException e) {
