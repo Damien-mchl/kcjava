@@ -1,8 +1,13 @@
 package kcjava;
 
+import java.io.Serializable;
 import java.time.*;
 
-public class Planning {
+public class Planning implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private LocalTime[] arrivals;
 	private LocalTime[] departures;
 	/*

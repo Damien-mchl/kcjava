@@ -1,8 +1,13 @@
 package kcjava;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Department {
+public class Department implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private ArrayList<Employee> employees;
 	/*

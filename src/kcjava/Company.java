@@ -3,6 +3,7 @@ package kcjava;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.time.LocalDate;
@@ -11,7 +12,11 @@ import java.util.*;
 
 
 
-public class Company {
+public class Company implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private ArrayList<Department> departments;
 	private ArrayList<CheckTime> checks;

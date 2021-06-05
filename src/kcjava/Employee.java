@@ -2,8 +2,14 @@ package kcjava;
 import java.time.*;
 import static java.time.temporal.ChronoUnit.MINUTES;
 
-public class Employee{
+import java.io.Serializable;
+
+public class Employee implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	final int MONDAY = 0;
 	final int TUESDAY = 1;
 	final int WEDNESDAY = 2;

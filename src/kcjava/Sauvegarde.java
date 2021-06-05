@@ -28,7 +28,6 @@ public abstract class Sauvegarde {
     }
     public static void sauvegarderCompany(Company comp, String path) throws ExceptionSauvegarde{
     	try {
-    		path="saves/test.ser";
             ObjectOutputStream dos;
             dos = new ObjectOutputStream(new FileOutputStream(path));
             dos.writeObject(comp);

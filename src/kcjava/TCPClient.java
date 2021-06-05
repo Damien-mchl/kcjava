@@ -117,8 +117,8 @@ public class TCPClient {
 			inputStream.close();
 			socketOfClient.close();
 				
-		}catch(IOException e) {
-			System.out.println(e);
+		}catch(Exception e) {
+			System.out.println("Server offline");
 		}
 	}
 }
