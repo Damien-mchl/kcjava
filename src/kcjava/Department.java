@@ -75,7 +75,13 @@ public class Department implements Serializable{
 	public void setEmployes(ArrayList<Employee> employees) {
 		this.employees = employees;
 	}
-	
+	/*
+	 * @brief recherche un employé dans le département
+	 * 
+	 * @param int l'id de l'employé
+	 * 
+	 * @return boolean vrai si l'employé est présent, faux sinon
+	 * */
 	public boolean containsEmployeeDep(int id) {
 		boolean contains = false;
 		for(int i=0; i<this.employees.size(); i++) {
@@ -85,7 +91,13 @@ public class Department implements Serializable{
 		}
 		return contains;
 	}
-	
+	/*
+	 * @brief modifie le planning d'un employé du département
+	 * 
+	 * @param int l'id de l'employé
+	 * @param Planning le planning souhaité
+	 * 
+	 * */
 	public void modifyEmployeeDep(int id, Planning planning) {
 		for(int i=0; i<this.employees.size(); i++) {
 			if(this.employees.get(i).getId()==id) {

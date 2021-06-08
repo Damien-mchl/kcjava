@@ -21,12 +21,19 @@ public class Company implements Serializable{
 	private ArrayList<Department> departments;
 	private ArrayList<CheckTime> checks;
 	
+	/*
+	 * @brief Constructeur d'une entreprise à partir d'un nom
+	 * 
+	 * */
 	public Company(String name) {
 		this.name = name;
 		this.departments = new ArrayList<Department>();
 		this.checks = new ArrayList<CheckTime>();
 	}
-	
+	/*
+	 * @brief Constructeur d'une entreprise à partir d'un nom et d'un nombre d'employés
+	 * 
+	 * */
 	public Company(String name, int nombreEmployee) throws Exception {
 		
 		this.name = name;
@@ -54,7 +61,11 @@ public class Company implements Serializable{
 		//Check-OUT
 	}
 	
-	
+	/*
+	 * @brief Ajout d'un département à l'entreprise
+	 * 
+	 * @param Departement le département souhaité
+	 * */
 	public void addDepartment(Department dep) {
 		if(!this.departments.contains(dep)) {
 			this.departments.add(dep);
@@ -72,7 +83,13 @@ public class Company implements Serializable{
             }
         }
     }
-	
+	/*
+	 * @brief recherche un employé dans l'entreprise
+	 * 
+	 * @param int l'id de l'employé
+	 * 
+	 * @return boolean vrai si l'employé est présent, faux sinon
+	 * */
 	public boolean containsEmployee(int id) {
 		boolean contains = false;
 		for(int i=0; i<this.departments.size();i++) {
@@ -82,13 +99,25 @@ public class Company implements Serializable{
 		}
 		return contains;
 	}
-	
+	/*
+	 * @brief modifie le planning d'un employé
+	 * 
+	 * @param int l'id de l'employé
+	 * @param Planning le planning souhaité
+	 * 
+	 * */
 	public void modifyEmployee(int id, Planning planning) {
 		for(int i=0; i<this.departments.size();i++) {
 			this.departments.get(i).modifyEmployeeDep(id,planning);
 		}
 	}
-	
+	/*
+	 * @brief Ajout d'un employé à un département
+	 * 
+	 * @param Employee l'employé
+	 * @param String le département
+	 * 
+	 * */
 	public void addEmployee(Employee emp, String department) {
 		boolean added = false;
 		for(int i=0; i<this.departments.size();i++) {
@@ -103,7 +132,12 @@ public class Company implements Serializable{
 			this.addDepartment(dep);
 		}
 	}
-	
+	/*
+	 * @brief Getter de tout les employés de l'entreprise
+	 * 
+	 * @return ArrayList<Employee> la liste des employés de l'entreprise
+	 * 
+	 * */
 	public ArrayList<Employee> getAllEmployees(){
 		ArrayList<Employee> employees = new ArrayList<Employee>();
 		for(int i = 0 ; i<this.departments.size(); i++) {
@@ -111,24 +145,60 @@ public class Company implements Serializable{
 		}
 		return employees;
 	}
-	
+	/*
+	 * @brief Getter du nom de l'entreprise
+	 * 
+	 * @return String le nom de l'entreprise
+	 * 
+	 * */
 	public String getNom() {
 		return name;
 	}
+	
+	/*
+	 * @brief Setter du nom de l'entreprise
+	 * 
+	 * @param String le nom de l'entreprise
+	 * 
+	 * */
 	public void setNom(String name) {
 		this.name = name;
 	}
+	
+	/*
+	 * @brief Getter des départements de l'entreprise
+	 * 
+	 * @return ArrayList<Department> la liste des départements
+	 * 
+	 * */
 	public ArrayList<Department> getDepartements() {
 		return departments;
 	}
+	
+	/*
+	 * @brief Setter des départements de l'entreprise
+	 * 
+	 * @param ArrayList<Department> la liste des départements
+	 * 
+	 * */
 	public void setDepartements(ArrayList<Department> departments) {
 		this.departments = departments;
 	}
-
+	/*
+	 * @brief Getter des pointages de l'entreprise
+	 * 
+	 * @return ArrayList<CheckTime> la liste des pointages
+	 * 
+	 * */
 	public ArrayList<CheckTime> getChecks() {
 		return this.checks;
 	}
-	
+	/*
+	 * @brief Getter des pointages de l'entreprise du jour
+	 * 
+	 * @return ArrayList<CheckTime> la liste des pointages du jour
+	 * 
+	 * */
 	public ArrayList<CheckTime> getDailyChecks(){
 		ArrayList<CheckTime> dailyChecks = new ArrayList<CheckTime>();
 		LocalDate today = LocalDate.now();

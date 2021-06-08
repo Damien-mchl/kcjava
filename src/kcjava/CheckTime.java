@@ -129,10 +129,22 @@ public class CheckTime implements Serializable{
 		this.identifiant = identifiant;
 	}
 
+	/*
+	 * @brief Récupération d'une heure en String
+
+	 * @return string l'heure
+	 * 
+	 * */
 	public String hourToString() {
 		return this.heurePointage.toString().substring(0, 5);
 	}
 	
+	/*
+	 * @brief Récupération d'une date en String
+
+	 * @return string la date
+	 * 
+	 * */
 	public String dateToString() {
 		return this.datePointage.toString();
 	}
