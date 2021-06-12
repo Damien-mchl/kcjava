@@ -10,20 +10,26 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 public class Controller{
 	
 	private Model model;
 	private View view;
 	public static int id;
+    /**
+     * constructeur
+     * @param m model
+     * @param v vue
+     */
     public Controller(Model m, View v) {
     	this.model = m;
     	this.view = v;
     	initView();
     }
     
+    /**
+     * initialise les valeurs de la vue
+     */
     public void initView() {
     	LocalDateTime date = LocalDateTime.now();
         String dispDate = date.getMonth().toString()+" "+date.getDayOfMonth()+", "+date.getYear()+" "+date.getHour()+":"+date.getMinute();
@@ -33,6 +39,9 @@ public class Controller{
         view.getRoundedTime().setText(dispRounded);
     }
     
+    /**
+     * initialise les controlleurs
+     */
     public void initController() {
     	
     	new Timer(1000, new ActionListener() {

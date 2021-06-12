@@ -4,6 +4,9 @@ import java.awt.*;
 
 import javax.swing.*;
 
+/**
+ * vue du client
+ */
 public class View {
 	private JFrame frame;
 	private JPanel ctrlPane;
@@ -21,6 +24,10 @@ public class View {
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JLabel label_id;
+	/**
+	 * constructeur
+	 * @param title titre de la fenetre
+	 */
 	public View(String title) {
         
 

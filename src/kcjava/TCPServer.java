@@ -7,14 +7,14 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import controller.Controller;
 import controller.ServerController;
-import model.Model;
 import model.ServerModel;
 import view.ServerView;
-import view.View;
 
 
+/**
+ * Serveur TCP
+ */
 public class TCPServer{
 	public static final int PORT = 3191;
 	private Company company;
@@ -22,12 +22,17 @@ public class TCPServer{
 	
 	public static String savePath;
 	
+	/**
+	 * constructeur
+	 * @param company entreprise
+	 * @throws Exception exception serveur
+	 */
 	public TCPServer(Company company) throws Exception{
 			// Deduction du fichier de sauvegarde associé
-			savePath = "saves/"+company.getNom()+".ser";
+			savePath = "saves"+File.separator+company.getNom()+".ser";
 			File f = new File(savePath);
 			if(f.exists())
-				this.company = Sauvegarde.chargerCompany(savePath);
+				this.company = Save.loadCompany(savePath);
 			else
 				this.company = company;
 			
@@ -55,11 +60,17 @@ public class TCPServer{
 				serverSocket.close();
 			}
 	}
+	/**
+	 * rafraichis les tables de l'IHM
+	 */
 	public static void refreshTable() {
 		controller.refreshCheckTables();
 		controller.refreshEmployeesTable();
 	}
 	
+	/**
+	 * Threads pour chaque client
+	 */
 	private class ServiceThread extends Thread{
 		private int clientNumber;
 		private Socket socket;

@@ -4,6 +4,9 @@ import controller.*;
 import model.*;
 import view.*;
 
+/**
+ * Lanceur du client
+ */
 public class MainClient {
 
 	public static void main(String[] args) {

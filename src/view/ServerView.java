@@ -21,8 +21,11 @@ import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.SpinnerModel;
 
-import kcjava.Sauvegarde;
+import kcjava.Save;
 
+/**
+ * vue serveur
+ */
 public class ServerView {
 	private JFrame frame;
 	private JTabbedPane tabbedPane;

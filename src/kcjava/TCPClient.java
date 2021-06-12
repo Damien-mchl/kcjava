@@ -1,27 +1,31 @@
 package kcjava;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.ConnectException;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * Client TCP
+ */
 public class TCPClient {
 	public final String ServerIP;
  	public final int portClient;
 	private CheckTime check = null;
-	public final static String savePath = "saves/saveClient.ser";
+	public final static String savePath = "saves"+File.separator+"saveClient.ser";
 	
 	private ObjectOutputStream outputStream = null;
 	private ObjectInputStream inputStream = null;
 	
 	
+	/**
+	 * constructeur
+	 * @param check pointage
+	 * @param ip ip du serveur
+	 * @param port port du serveur
+	 * @throws Exception exception client
+	 */
 	public TCPClient(CheckTime check, String ip, int port) throws Exception{
 
 		this.check = check;
@@ -45,14 +49,14 @@ public class TCPClient {
 			ArrayList<CheckTime> checks;
 			File f = new File(savePath);
 			if(f.exists()) {
-				checks = Sauvegarde.charger(savePath);
+				checks = Save.load(savePath);
 				System.out.println("Check loaded");
 			}else {
 				checks = new ArrayList<CheckTime>();
 				System.out.println("No check to load");
 			}
 			checks.add(this.check);
-			Sauvegarde.sauvegarder(checks, savePath);
+			Save.save(checks, savePath);
 			System.out.println("Check saved");
 			
 		}catch(java.net.ConnectException e){ 	
@@ -61,14 +65,14 @@ public class TCPClient {
 			ArrayList<CheckTime> checks;
 			File f = new File(savePath);
 			if(f.exists()) {
-				checks = Sauvegarde.charger(savePath);
+				checks = Save.load(savePath);
 				System.out.println("Check loaded");
 			}else {
 				checks = new ArrayList<CheckTime>();
 				System.out.println("No check to load");
 			}
 			checks.add(this.check);
-			Sauvegarde.sauvegarder(checks, savePath);
+			Save.save(checks, savePath);
 			System.out.println("Check saved");
 		}catch(java.net.UnknownHostException e) {
 			//Si la connexion echoue
@@ -76,14 +80,14 @@ public class TCPClient {
 			ArrayList<CheckTime> checks;
 			File f = new File(savePath);
 			if(f.exists()) {
-				checks = Sauvegarde.charger(savePath);
+				checks = Save.load(savePath);
 				System.out.println("Check loaded");
 			}else {
 				checks = new ArrayList<CheckTime>();
 				System.out.println("No check to load");
 			}
 			checks.add(this.check);
-			Sauvegarde.sauvegarder(checks, savePath);
+			Save.save(checks, savePath);
 			System.out.println("Check saved");
 		}
 		
@@ -99,7 +103,7 @@ public class TCPClient {
 			File f = new File(savePath);
 			ArrayList<CheckTime> waitingChecks;
 			if(f.exists()) {
-				waitingChecks = Sauvegarde.charger(savePath);
+				waitingChecks = Save.load(savePath);
 				
 				for(CheckTime c : waitingChecks) {
 					// Envoi de la CheckTime

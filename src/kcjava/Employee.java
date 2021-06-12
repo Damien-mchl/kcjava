@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class Employee implements Serializable{
 	
-	/**
+	/***
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -23,13 +23,13 @@ public class Employee implements Serializable{
 	private long stockH; // Positif si il a fait des heures en trop
 	private boolean checked = false; // pas encore pointé
 	
-	/*
-	 * @brief Constructeur de la classe Employee
-	 * @param int id identifiant de l'employé
-	 * @param String lastName Nom de famille
-	 * @param String firstName prénom
-	 * @param Planning planning son emploi du temps
-	 * @param long stockH son "stock" d'heure 
+	/**
+	 * Constructeur de la classe Employee
+	 * @param id identifiant de l'employé
+	 * @param lastName Nom de famille
+	 * @param firstName prénom
+	 * @param planning son emploi du temps
+	 * @param stockH son "stock" d'heure 
 	 * 
 	 * */
 	public Employee(int id, String lastName, String firstName, Planning planning, long stockH) {
@@ -39,11 +39,11 @@ public class Employee implements Serializable{
 		this.planning = planning;
 		this.stockH = stockH;
 	}
-	/*
-	 * @brief Compare l'heure de pointage par rapport à l'heure prévue dans le planning
+	/**
+	 * Compare l'heure de pointage par rapport à l'heure prévue dans le planning
 	 * 		  et ajoute l'excédant à la valeur stockH
 	 * 
-	 * @param CheckTime checkTime l'heure du pointage
+	 * @param checkTime l'heure du pointage
 	 * 
 	 * */
 	public void planningCompare(CheckTime checkTime) {
@@ -83,110 +83,110 @@ public class Employee implements Serializable{
 		}
 		System.out.println("Nouveau stockH = "+this.stockH);
 	}
-	/*
-	 * @brief Getter de id
+	/**
+	 * Getter de id
 	 * 
-	 * @return int id
+	 * @return id
 	 * 
 	 * */
 	public int getId() {
 		return id;
 	}
 
-	/*
-	 * @brief Setter de id
+	/**
+	 * Setter de id
 	 * 
-	 * @param int id
+	 * @param id id de l'employé
 	 * 
 	 * */
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	/*
-	 * @brief Getter de lastName
+	/**
+	 * Getter de lastName
 	 * 
-	 * @return String lastName
+	 * @return lastName
 	 * 
 	 * */
 	public String getLastName() {
 		return lastName;
 	}
 
-	/*
-	 * @brief Setter de lastName
+	/**
+	 * Setter de lastName
 	 * 
-	 * @param String lastName
+	 * @param lastName nom de l'employe
 	 * 
 	 * */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	/*
-	 * @brief Getter de firstName
+	/**
+	 * Getter de firstName
 	 * 
-	 * @return String firstName
+	 * @return firstName
 	 * 
 	 * */
 	public String getFirstName() {
 		return firstName;
 	}
 
-	/*
-	 * @brief Setter de firstName
+	/**
+	 * Setter de firstName
 	 * 
-	 * @param String firstName
+	 * @param firstName prenom de l'employe
 	 * 
 	 * */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	/*
-	 * @brief Getter de Planning
+	/**
+	 * Getter de Planning
 	 * 
-	 * @return Planning planning
+	 * @return planning
 	 * 
 	 * */
 	public Planning getPlanning() {
 		return planning;
 	}
 
-	/*
-	 * @brief Setter de Planning
+	/**
+	 * Setter de Planning
 	 * 
-	 * @param Planning planning
+	 * @param planning planning de l'employe
 	 * 
 	 * */
 	public void setPlanning(Planning planning) {
 		this.planning = planning;
 	}
 
-	/*
-	 * @brief Getter de stockH
+	/**
+	 * Getter de stockH
 	 * 
-	 * @return long stockH
+	 * @return stockH
 	 * 
 	 * */
 	public long getStockH() {
 		return this.stockH;
 	}
 	
-	/*
-	 * @brief Setter de stockH
+	/**
+	 * Setter de stockH
 	 * 
-	 * @param long stockH
+	 * @param stockH stock d'heures supplementaires de l'employe
 	 * 
 	 * */
 	public void setStockH(long stockH) {
 		this.stockH = stockH;
 	}
 	
-	/*
-	 * @brief Getter du jour actuel (de 0 à 6)
+	/**
+	 * Getter du jour actuel (de 0 à 6)
 	 * 
-	 * @return LocalDate date
+	 * @return entier representant le jour actuel de la semaine
 	 * 
 	 * */
 	public int getActualDayInt() {

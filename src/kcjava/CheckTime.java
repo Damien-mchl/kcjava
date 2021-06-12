@@ -3,15 +3,19 @@ import java.io.Serializable;
 import java.time.*;
 
 public class CheckTime implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private LocalTime heurePointage;
 	private LocalDate datePointage;
 	private int identifiant;
-	/*
-	 * @brief  Constructeur de la classe CheckTime
+	/**
+	 *  Constructeur de la classe CheckTime
 	 * 
-	 * @param	LocalTime heurePointage 
-	 * @param	LocalDate datePointage
-	 * @param	int identifiant identifiant de l'employé
+	 * @param	heurePointage heure de pointage
+	 * @param	datePointage date de pointage
+	 * @param	identifiant identifiant de l'employé
 	 * */
 	public CheckTime(LocalTime heurePointage, LocalDate datePointage, int identifiant) {
 		this.heurePointage = roundTime(heurePointage);
@@ -20,11 +24,11 @@ public class CheckTime implements Serializable{
 	}
 	
 
-	/*
-	 * @brief arrondi l'heure au quart d'heure le plus près
+	/**
+	 * arrondi l'heure au quart d'heure le plus près
 	 * 
-	 * @param LocalTime time
-	 * 
+	 * @param time heure
+	 * @return heure arrondie
 	 * */
 	public static LocalTime roundTime(LocalTime time) {
 		int i=time.getMinute();
@@ -56,10 +60,10 @@ public class CheckTime implements Serializable{
 	}
 	
 	
-	/*
-	 * @brief Constructeur de la classe CheckTime
+	/**
+	 * Constructeur de la classe CheckTime
 	 * 
-	 * @param int id identifiant employé
+	 * @param id identifiant de l'employé
 	 * 
 	 * */
 	public CheckTime(int id) {
@@ -71,78 +75,78 @@ public class CheckTime implements Serializable{
 	
 	
 
-	/*
- 	* @brief Getter de heurePointage
+	/**
+ 	* Getter de heurePointage
 
- 	* @return LocalTime heurePointage
+ 	* @return heurePointage heure de pointage
  	* 
  	* */
 	public LocalTime getHeurePointage() {
 		return heurePointage;
 	}
 
-	/*
-	 * @brief setter de heurePointage
+	/**
+	 * setter de heurePointage
 
-	 * @param LocalTime heurePointage
+	 * @param heurePointage heure de pointage
 	 * 
 	 * */
 	public void setHeurePointage(LocalTime heurePointage) {
 		this.heurePointage = heurePointage;
 	}
-	/*
-	 * @brief Getter de datePointage
+	/**
+	 * Getter de datePointage
 
-	 * @return LocalDate datePointage
+	 * @return datePointage date de pointage
 	 * 
 	 * */
 	public LocalDate getDatePointage() {
 		return datePointage;
 	}
-	/*
-	 * @brief Setter de datePointage
+	/**
+	 * Setter de datePointage
 
-	 * @param LocalDate datePointage
+	 * @param datePointage date de pointage
 	 * 
 	 * */
 	public void setDatePointage(LocalDate datePointage) {
 		this.datePointage = datePointage;
 	}
 
-	/*
-	 * @brief Getter de identifiant
+	/**
+	 * Getter de identifiant
 
-	 * @return int identifiant
+	 * @return identifiant indentifiant de l'employé
 	 * 
 	 * */
 	public int getId() {
 		return identifiant;
 	}
 	
-	/*
-	 * @brief Setter de identifiant
+	/**
+	 * Setter de identifiant
 
-	 * @param int identifiant
+	 * @param identifiant indentifiant de l'employé
 	 * 
 	 * */
 	public void setIdentifiant(int identifiant) {
 		this.identifiant = identifiant;
 	}
 
-	/*
-	 * @brief Récupération d'une heure en String
+	/**
+	 * Récupération d'une heure en String
 
-	 * @return string l'heure
+	 * @return chaine representant l'heure de pointage
 	 * 
 	 * */
 	public String hourToString() {
 		return this.heurePointage.toString().substring(0, 5);
 	}
 	
-	/*
-	 * @brief Récupération d'une date en String
+	/**
+	 * Récupération d'une date en String
 
-	 * @return string la date
+	 * @return chaine representant la date de pointage
 	 * 
 	 * */
 	public String dateToString() {

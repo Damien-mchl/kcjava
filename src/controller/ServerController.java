@@ -10,13 +10,12 @@ import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.TableModel;
 
 import kcjava.CheckTime;
 import kcjava.Employee;
-import kcjava.ExceptionSauvegarde;
+import kcjava.ExceptionSave;
 import kcjava.Planning;
-import kcjava.Sauvegarde;
+import kcjava.Save;
 import kcjava.TCPServer;
 import model.ServerModel;
 import view.ServerView;
@@ -25,12 +24,20 @@ public class ServerController {
 	
 	private ServerModel model;
 	private ServerView view;
+    /**
+     * constructeur
+     * @param m model
+     * @param v vue
+     */
     public ServerController(ServerModel m, ServerView v){
     	this.model = m;
     	this.view = v;
     	initView();
     }
     
+    /**
+     * rafraichis les tables de pointages
+     */
     public void refreshCheckTables() {
     	view.getPanel().removeAll();
     	ArrayList<CheckTime> checks = this.model.getCompany().getChecks();
@@ -74,6 +81,9 @@ public class ServerController {
     	view.getFrame().pack();
     }
     
+    /**
+     * rafraichis la table des employees
+     */
     public void refreshEmployeesTable() {
     	view.getPanel_2().removeAll();
     	ArrayList<Employee> employees = this.model.getCompany().getAllEmployees();
@@ -105,17 +115,23 @@ public class ServerController {
     	view.getFrame().pack();
     }
     
+    /**
+     * initialise la vue
+     */
     public void initView() {
     	refreshCheckTables();
     	refreshEmployeesTable();
     }
     
+    /**
+     * initialise les controlleurs
+     */
     public void initController() {
     	this.view.getFrame().addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
             	try {
-					Sauvegarde.sauvegarderCompany(model.getCompany(), TCPServer.savePath);
-				} catch (ExceptionSauvegarde e1) {
+					Save.saveCompany(model.getCompany(), TCPServer.savePath);
+				} catch (ExceptionSave e1) {
 					
 				}
                 System.exit(0);
